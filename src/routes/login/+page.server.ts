@@ -1,40 +1,40 @@
 import type { Actions } from './$types'
-import { connect, isConnected, login } from '$lib/database';
+import { isConnected, login } from '$lib/database';
 import { redirect } from '@sveltejs/kit';
-import { generateSession } from '$lib/gentoken';
+import type { PageServerLoad } from './$types';
 
 
-export const load = () => {
+export const load = (async ({ parent, locals }) => {
 
-    if(!isConnected) {
-        connect()
-    } 
+    const { session } = await parent();
+    console.log(session)
 
-};
+    console.log(session.email)
+    // Already logged in:
+    if(session.email) {
+	    throw redirect(302, '/')
+    }
+}) satisfies PageServerLoad;
 
 export const actions  = {
-   default: async ({ cookies, request })  => {
+   default: async ({ request, locals })  => {
        const formData = await request.formData();
        const email = formData.get("email"),
              password  = formData.get("password");
              
-    
-    const authentication = login(email, password);
-    const { id } = generateSession(email, password);
-    if(authentication.success) {
-        cookies.set('access', `Bearer ${id}`, { 
-            path: "/",
-            sameSite: 'strict',
-            maxAge: 60 * 60 * 24,
-            httpOnly: true,
-            secure: true
-        });
-        throw redirect(302, "/fridge");
-    }
-
-    return {
-        email,
-        message: authentication.message
-    };
+     
+       const authentication = login(email as string, password as string);
+       console.log(authentication)
+       if(authentication.success) {
+           const { email="" } = locals.session.data;
+           if(email !== authentication.user?.email) {
+               await locals.session.set({ email: authentication.user?.email! });
+           }
+           throw redirect(302, "/fridge");
+       }
+       return {
+            email,
+            message: authentication.message
+        };
    }
 } satisfies Actions;

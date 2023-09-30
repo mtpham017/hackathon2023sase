@@ -39,7 +39,7 @@ export function signup(email: string, password: string) {
     INSERT INTO USER (email, password) VALUES (?, ?)
   `);
 
-  const result = insertUser.run(email, password);
+  const result = insertUser.run(email, password)
 
   if (result.changes === 1) {
     return { success: true, message: 'User registered successfully' };
@@ -53,28 +53,16 @@ export function login(email: string, password: string) {
     SELECT * FROM USER WHERE email = ? AND password = ?
   `);
 
-  const user = findUser.get(email, password);
+  const user = findUser.get(email, password) as { email: string, password: string };
 
   if (user) {
-    return { success: true, message: 'Login successful', user };
+    return { success: true, message: 'Login successful', user } ;
   } else {
     return { success: false, message: 'Invalid email or password' };
   }
 }
 
-export const connect = () => { 
 
-    db.pragma('journal_mode = WAL');
-
-    // Create the CATEGORIES table
-    createCategoriesTable.run();
-    createUserTable.run();
-    // Create the ITEM table
-    createItemTable.run();
-    isConnected = true;
-
-
-}
 function insertCategory(categoryName: string): void {
     const insertCategoryStmt = db.prepare(`
       INSERT INTO CATEGORIES (category_name)
@@ -192,4 +180,19 @@ export function getRecipeById(recipeId:number) {
 }
 
 
+const connect = () => { 
 
+    db.pragma('journal_mode = WAL');
+
+    // Create the CATEGORIES table
+    createCategoriesTable.run();
+    createUserTable.run();
+    createRecipeTable.run();
+    createRecipeItemTable.run();
+    // Create the ITEM table
+    createItemTable.run();
+    isConnected = true;
+
+}
+
+connect();
