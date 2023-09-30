@@ -1,59 +1,59 @@
-<script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
-</script>
-
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>How to play Sverdle</title>
+	<meta name="description" content="How to play Sverdle" />
 </svelte:head>
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
+<div class="text-column">
+    start!
+</div>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
+	span {
+		display: inline-flex;
 		justify-content: center;
 		align-items: center;
-		flex: 0.6;
+		font-size: 0.8em;
+		width: 2.4em;
+		height: 2.4em;
+		background-color: white;
+		box-sizing: border-box;
+		border-radius: 2px;
+		border-width: 2px;
+		color: rgba(0, 0, 0, 0.7);
 	}
 
-	h1 {
-		width: 100%;
+	.missing {
+		background: rgba(255, 255, 255, 0.5);
+		color: rgba(0, 0, 0, 0.5);
 	}
 
-	.welcome {
-		display: block;
+	.close {
+		border-style: solid;
+		border-color: var(--color-theme-2);
+	}
+
+	.exact {
+		background: var(--color-theme-2);
+		color: white;
+	}
+
+	.example {
+		display: flex;
+		justify-content: flex-start;
+		margin: 1rem 0;
+		gap: 0.2rem;
+	}
+
+	.example span {
+		font-size: 1.4rem;
+	}
+
+	p span {
 		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
+		border-width: 1px;
+		border-radius: 1px;
+		font-size: 0.4em;
+		transform: scale(2) translate(0, -10%);
+		margin: 0 1em;
 	}
 </style>
