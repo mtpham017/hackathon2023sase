@@ -2,6 +2,7 @@ import type { Session } from 'svelte-kit-cookie-session';
 
 type SessionData = {
     email: string
+    user_id: number
 };
 
 // See https://kit.svelte.dev/docs/types#app
