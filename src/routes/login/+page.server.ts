@@ -20,11 +20,12 @@ export const actions  = {
              
      
        const authentication = login(email as string, password as string);
-       console.log(authentication)
        if(authentication.success) {
            const { email="" } = locals.session.data;
            if(email !== authentication.user?.email) {
-               await locals.session.set({ email: authentication.user?.email! });
+               await locals.session.set({
+                   email: authentication.user?.email! 
+               });
            }
            throw redirect(302, "/fridge");
        }

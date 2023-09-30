@@ -1,8 +1,8 @@
-import type { Actions } from "@sveltejs/kit";
+import { redirect, type Actions } from "@sveltejs/kit";
 
 export const actions = ({
-	default: async ({ locals }) => {
-		await locals.session.destroy();
-		return {};
-	}
+    default: async ({ locals }) => {
+	await locals.session.destroy();
+        throw redirect(302, "/");
+    }
 }) satisfies Actions;
