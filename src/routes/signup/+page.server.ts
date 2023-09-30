@@ -1,40 +1,29 @@
 import type { Actions } from './$types'
-import { connect, isConnected, signup } from '$lib/database';
+import { isConnected, signup } from '$lib/database';
 import { redirect } from '@sveltejs/kit';
-import { session } from '$app/stores'
 
-export const load = () => {
-    if(!isConnected) {
-        connect();
-    } 
-};
 
 export const actions  = {
-   default: async ({ cookies, request })  => {
-       const formData = await request.formData();
+   default: async ({ request, locals })  => {
+             const formData = await request.formData();
        const email = formData.get("email"),
              password  = formData.get("password");
              
-       if(!email || !password ) {
-          return { 
-            message: "Missing required field",
-          }
-       }
-       const authentication = signup(email, password);
+     
+       const authentication = signup(email as string, password as string);
        if(authentication.success) {
-           cookies.set('access', 'Bearer <token>', { 
-               path: "/",
-               sameSite: 'strict',
-               maxAge: 60 * 60 * 24,
-               httpOnly: true,
-               secure: true
-           })
-           throw redirect(302, "/fridge");
+           const { email } = locals.session.data;
+            console.log(email)
+           if(!email) {
+               await locals.session.set({ email });
+               throw redirect(302, "/login");
+           } else {
+                throw redirect(302, "/fridge");
+           }
        }
-   
-       return {
-           email,
-           message: authentication.message
-       };
+        return {
+            email,
+            message: authentication.message
+        };
    }
 } satisfies Actions;
