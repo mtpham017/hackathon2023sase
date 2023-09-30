@@ -24,7 +24,9 @@ export const actions  = {
            const { email="" } = locals.session.data;
            if(email !== authentication.user?.email) {
                await locals.session.set({
-                   email: authentication.user?.email! 
+                   email: authentication.user?.email!,
+                   //@ts-ignore
+                   user_id: authentication.user.user_id
                });
            }
            throw redirect(302, "/fridge");
