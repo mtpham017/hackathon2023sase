@@ -2,7 +2,7 @@
 import Database from 'better-sqlite3';
 
 // Create or open a SQLite database file
-const db = new Database('mydatabase.db');
+const db = new Database('mydatabase.db', { verbose: console.log });
 
 // Define the schema for the CATEGORIES table
 const createCategoriesTable = db.prepare(`
@@ -33,8 +33,17 @@ const createItemTable = db.prepare(`
   )
 `);
 
-// Create the CATEGORIES table
-createCategoriesTable.run();
 
-// Create the ITEM table
-createItemTable.run();
+export const connect = () => {
+    db.pragma('journal_mode = WAL');
+
+    // Create the CATEGORIES table
+    createCategoriesTable.run();
+    createUserTable.run();
+    // Create the ITEM table
+    createItemTable.run();
+}
+
+export const close = () => {
+    return db.close();
+}
