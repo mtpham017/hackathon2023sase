@@ -1,6 +1,7 @@
 import type { Actions } from './$types'
 import { connect, isConnected, login } from '$lib/database';
 import { redirect } from '@sveltejs/kit';
+import { generateToken } from '$lib/gentoken';
 
 
 export const load = () => {
@@ -19,8 +20,9 @@ export const actions  = {
              
     
     const authentication = login(email, password);
+    const token = generateToken();
     if(authentication.success) {
-        cookies.set('access', 'Bearer <token>', { 
+        cookies.set('access', `Bearer ${token}`, { 
                path: "/",
                sameSite: 'strict',
                maxAge: 60 * 60 * 24,

@@ -7,5 +7,6 @@ export const handle = (async ({ event, resolve }) => {
     if(!access && event.route.id?.startsWith('/(app)')){ 
         throw redirect(302, '/login')
     }
+
     return resolve(event);    
 }) satisfies Handle;
