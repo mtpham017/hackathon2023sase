@@ -3,7 +3,93 @@
   <meta name="description" content="Your Virtual Kitchen Assistant - Make Cooking Easier" />
 </svelte:head>
 
+<style>
+  /* Style section headings */
+  section {
+    overflow: hidden;
+    padding: 80px 0;
+  }
+
+  .section-bg {
+    background-color: #eee;
+  }
+
+  .section-header {
+    text-align: center;
+    padding-bottom: 30px;
+  }
+
+  .section-header h2 {
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    color: #7f7f90;
+    text-transform: uppercase;
+    font-family: var(--font-default);
+  }
+
+  .section-header p {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 400;
+    font-family: var(--font-primary);
+  }
+
+  .section-header p span {
+    color: var(--color-primary);
+  }
+
+  /* Style the navigation bar */
+  nav {
+    background-color: #00cc00; /* Set the background color */
+    color: white; /* Set text color */
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+
+  nav li {
+    font-size: 1.2rem;
+  }
+
+  /* Style the "Get Started" button */
+  .get-started-button {
+    background-color: #007BFF; /* Primary color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+
+  /* Style the footer */
+  footer {
+    margin-top: 2rem;
+    color: #777;
+  }
+</style>
+
 <div class="container">
+  <!-- Navigation bar -->
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Fridge</a></li>
+    </ul>
+    <button class="get-started-button">Logout</button>
+  </nav>
+
   <header>
     <h1>Welcome to Virtual Kitchen Helper</h1>
     <p>Your Virtual Kitchen Assistant for identifying ingredients, sharing nutritional facts, recommending recipes, and more.</p>
@@ -39,50 +125,3 @@
     <p>&copy; 2023 Virtual Kitchen Helper. All rights reserved.</p>
   </footer>
 </div>
-
-<style>
-  /* Style the container to center its contents */
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    text-align: center;
-  }
-
-  /* Style the header */
-  header {
-    margin-bottom: 2rem;
-  }
-
-  /* Style section headings */
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  /* Style lists */
-  ul {
-    list-style: disc;
-    margin-left: 2rem;
-  }
-
-  /* Style the "Get Started" button */
-  .get-started-button {
-    background-color: #007BFF; /* Primary color */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 1rem;
-  }
-
-  /* Style the footer */
-  footer {
-    margin-top: 2rem;
-    color: #777;
-  }
-</style>
