@@ -1,6 +1,6 @@
 <svelte:head>
 	<title>How to play Sverdle</title>
-	<meta name="description" content="How to play Sverdle" />
+	<meta name="description" content=Shahidge" />
 </svelte:head>
 
 <div class="text-column">
