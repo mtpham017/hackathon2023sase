@@ -23,6 +23,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@svelteuidev/composables": "^0.15.3",
+		"@svelteuidev/core": "^0.15.3",
 		"better-sqlite3": "^8.6.0"
 	}
 }
