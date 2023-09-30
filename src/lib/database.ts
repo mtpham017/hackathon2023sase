@@ -33,7 +33,7 @@ const createItemTable = db.prepare(`
   )
 `);
 
-
+//connect and create table if not exists
 export const connect = () => {
     db.pragma('journal_mode = WAL');
 
@@ -44,6 +44,46 @@ export const connect = () => {
     createItemTable.run();
 }
 
+function insertCategory(categoryName: string): void {
+    const insertCategoryStmt = db.prepare(`
+      INSERT INTO CATEGORIES (category_name)
+      VALUES (?)
+    `);
+    
+    insertCategoryStmt.run(categoryName);
+  }
+
+  
+  function insertUser(username: string): void {
+    const insertUserStmt = db.prepare(`
+      INSERT INTO USERS (username)
+      VALUES (?)
+    `);
+    
+    insertUserStmt.run(username);
+  }
+
+interface InsertItemParams { 
+    name: string, barcode: number, expirationDate: string, categoryId: number, userId: number, image: Buffer
+
+}
+function insertItem(items: InsertItemParams): void {
+    const insertItemStmt = db.prepare(`
+      INSERT INTO ITEM (name, barcode, expiration_date, category_id, user_id, image)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `);
+    const { name, barcode, expirationDate, categoryId, userId, image } = items;
+    insertItemStmt.run(name, barcode, expirationDate, categoryId, userId, image);
+}
+  
+//close database 
 export const close = () => {
+    console.log("closing!")
     return db.close();
 }
+
+export {
+    insertCategory,
+    insertUser,
+    insertItem
+};
