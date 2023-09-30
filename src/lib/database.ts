@@ -8,8 +8,12 @@ const db = new Database('mydatabase.db');
 const createCategoriesTable = db.prepare(`
   CREATE TABLE IF NOT EXISTS CATEGORIES (
     category_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    description TEXT
+  )
+`);
+
+const createUserTable = db.prepare(`
+  CREATE TABLE IF NOT EXISTS USERS (
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
   )
 `);
 
@@ -18,8 +22,8 @@ const createItemTable = db.prepare(`
   CREATE TABLE IF NOT EXISTS ITEM (
     item_id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
-    price REAL,
     category_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES USER(user_id)
     FOREIGN KEY (category_id) REFERENCES CATEGORIES(category_id)
   )
 `);
