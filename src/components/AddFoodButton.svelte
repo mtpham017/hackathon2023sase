@@ -1,63 +1,28 @@
 <script lang="ts">
-    import { Button } from '@svelteuidev/core';
-    import { TextInput } from '@svelteuidev/core';
-    import { insertItem } from '$lib/database';
+  import { Button } from '@svelteuidev/core';
+  import { TextInput } from '@svelteuidev/core';
 
-    let foodData = null;
-    let searchQuery = ''; // Initialize search query
+  let searchQuery = ''; // Initialize search query
 
-  // Function to fetch food data from the Open Food Repo API
-  // Use the API key stored in the environment variable
-  const apiKey = process.env.OPENFOODREPO_API_KEY;
-
-  async function fetchFoodData() {
-  try {
-    const apiUrl = 'https://api.openfoodrepo.org/v1/products';
-
-    // Include the search query in the API URL
-    const apiUrlWithQuery = `${apiUrl}?query=${searchQuery}`;
-
-    // Create headers and include the API key
-    const headers = new Headers({
-      'Authorization': `Bearer ${apiKey}`,
-      'Content-Type': 'application/json', // Include content type if required
-    });
-
-    const response = await fetch(apiUrlWithQuery, {
-      method: 'GET',
-      headers: headers,
-    });
-
+  async function addToFridge() {
+    // Trigger the server route to fetch food data and insert into the database
+    const response = await fetch('/api'); // Use the server route URL
     if (response.ok) {
-      const apiData = await response.json();
-
-      // Iterate through the API data and insert each item into the database
-      apiData.forEach((apiItem: { name: any; barcode: any; expiration_date: any; category_id: any; user_id: any; image: WithImplicitCoercion<string> | { [Symbol.toPrimitive](hint: "string"): string; }; }) => {
-        // Convert API data to the format expected by the database
-        const nsertItem = {
-          name: apiItem.name,
-          barcode: apiItem.barcode,
-          expirationDate: apiItem.expiration_date,
-          categoryId: apiItem.category_id,
-          userId: apiItem.user_id,
-          image: Buffer.from(apiItem.image, 'base64'), // Assuming the API returns image data as base64
-        };
-
-        // Insert the item into the database
-        insertItem(nsertItem);
-      });
+      // Handle the response if needed
+      const data = await response.json();
+      console.log('Data from server route:', data);
     } else {
-      console.error('Failed to fetch food data');
+      console.error('Failed to fetch food data from the server route');
     }
-  } catch (error) {
-    console.error('An error occurred while fetching food data:', error);
   }
-}
+</script>
 
-  </script>
 <TextInput
-input type="text" bind:value={searchQuery} placeholder="Enter ingredients" 
- />
-  <Button on:click={fetchFoodData}>
-    Add to Fridge
-  </Button>
+  type="text"
+  bind:value={searchQuery}
+  placeholder="Enter ingredients"
+/>
+
+<Button on:click={addToFridge}>
+  Add to Fridge
+</Button>
