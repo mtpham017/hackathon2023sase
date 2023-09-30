@@ -27,11 +27,9 @@ const createItemTable = db.prepare(`
     name TEXT NOT NULL,
     barcode INT,
     expiration_date DATE,
-    category_id INTEGER,
-    user_id INTEGER,
-    FOREIGN KEY (user_id) REFERENCES USER(user_id),
-    FOREIGN KEY (category_id) REFERENCES CATEGORIES(category_id),
-    image INT
+    category_id INTEGER FOREIGN KEY (category_id) REFERENCES CATEGORIES(category_id),
+    user_id INTEGER FOREIGN KEY (user_id) REFERENCES USER(user_id),
+    image BLOB
   )
 `);
 export function signup(email: string, password: string) {
