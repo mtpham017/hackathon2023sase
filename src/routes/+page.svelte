@@ -3,7 +3,6 @@
   <meta name="description" content="Your Virtual Kitchen Assistant - Make Cooking Easier" />
 </svelte:head>
 
-<<<<<<< Updated upstream
 <div class="container">
   <header>
     <h1>Welcome to Virtual Kitchen Helper</h1>
@@ -39,10 +38,6 @@
   <footer>
     <p>&copy; 2023 Virtual Kitchen Helper. All rights reserved.</p>
   </footer>
-=======
-<div class="text-column">
-    Fridge
->>>>>>> Stashed changes
 </div>
 
 <style>
