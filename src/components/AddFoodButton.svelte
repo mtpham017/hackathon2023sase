@@ -1,29 +1,59 @@
 <script lang="ts">
     import { Button } from '@svelteuidev/core';
     import { TextInput } from '@svelteuidev/core';
+    import { insertItem } from '$lib/database';
 
     let foodData = null;
     let searchQuery = ''; // Initialize search query
 
   // Function to fetch food data from the Open Food Repo API
+  // Use the API key stored in the environment variable
+  const apiKey = process.env.OPENFOODREPO_API_KEY;
+
   async function fetchFoodData() {
-    try {
-      // Set up the base API URL
-      const apiUrl = 'https://api.openfoodrepo.org/v1/products';
+  try {
+    const apiUrl = 'https://api.openfoodrepo.org/v1/products';
 
-      // Include the search query in the API URL
-      const apiUrlWithQuery = `${apiUrl}?query=${searchQuery}`;
+    // Include the search query in the API URL
+    const apiUrlWithQuery = `${apiUrl}?query=${searchQuery}`;
 
-      const response = await fetch(apiUrlWithQuery);
-      if (response.ok) {
-        foodData = await response.json();
-      } else {
-        console.error('Failed to fetch food data');
-      }
-    } catch (error) {
-      console.error('An error occurred while fetching food data:', error);
+    // Create headers and include the API key
+    const headers = new Headers({
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json', // Include content type if required
+    });
+
+    const response = await fetch(apiUrlWithQuery, {
+      method: 'GET',
+      headers: headers,
+    });
+
+    if (response.ok) {
+      const apiData = await response.json();
+
+      // Iterate through the API data and insert each item into the database
+      apiData.forEach((apiItem: { name: any; barcode: any; expiration_date: any; category_id: any; user_id: any; image: WithImplicitCoercion<string> | { [Symbol.toPrimitive](hint: "string"): string; }; }) => {
+        // Convert API data to the format expected by the database
+        const  insertItem = {
+          name: apiItem.name,
+          barcode: apiItem.barcode,
+          expirationDate: apiItem.expiration_date,
+          categoryId: apiItem.category_id,
+          userId: apiItem.user_id,
+          image: Buffer.from(apiItem.image, 'base64'), // Assuming the API returns image data as base64
+        };
+
+        // Insert the item into the database
+        insertItem(apiItem);
+      });
+    } else {
+      console.error('Failed to fetch food data');
     }
+  } catch (error) {
+    console.error('An error occurred while fetching food data:', error);
   }
+}
+
   </script>
 <TextInput
 input type="text" bind:value={searchQuery} placeholder="Enter ingredients" 
