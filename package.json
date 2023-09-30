@@ -34,7 +34,7 @@
 		"better-sqlite3": "^8.6.0",
 		"dayjs": "^1.11.10",
 		"html5-qrcode": "^2.3.8",
-		"postcss": "^8.4.31"
+		"postcss": "^8.4.31",
 		"svelte-kit-cookie-session": "^4.0.0"
 	}
 }
