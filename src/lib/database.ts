@@ -8,12 +8,14 @@ const db = new Database('mydatabase.db');
 const createCategoriesTable = db.prepare(`
   CREATE TABLE IF NOT EXISTS CATEGORIES (
     category_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category_name TEXT NOT NULL
   )
 `);
 
 const createUserTable = db.prepare(`
   CREATE TABLE IF NOT EXISTS USERS (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
   )
 `);
 
