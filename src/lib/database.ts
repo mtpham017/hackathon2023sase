@@ -114,5 +114,5 @@ export const close = () => {
 export {
     insertCategory,
     insertUser,
-    insertItem
-};
+    insertItem,
+ };
