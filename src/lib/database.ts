@@ -13,9 +13,10 @@ const createCategoriesTable = db.prepare(`
 `);
 
 const createUserTable = db.prepare(`
-  CREATE TABLE IF NOT EXISTS USERS (
+  CREATE TABLE IF NOT EXISTS USER (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL
   )
 `);
 
@@ -27,14 +28,42 @@ const createItemTable = db.prepare(`
     barcode INT,
     expiration_date DATE,
     category_id INTEGER,
-    FOREIGN KEY (user_id) REFERENCES USER(user_id)
-    FOREIGN KEY (category_id) REFERENCES CATEGORIES(category_id)
-    image BLOB
+    user_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES USER(user_id),
+    FOREIGN KEY (category_id) REFERENCES CATEGORIES(category_id),
+    image INT
   )
 `);
+export function signup(email: string, password: string) {
+  const insertUser = db.prepare(`
+    INSERT INTO USERS (email, password) VALUES (?, ?)
+  `);
 
-//connect and create table if not exists
-export const connect = () => {
+  const result = insertUser.run(email, password);
+
+  if (result.changes === 1) {
+    return { success: true, message: 'User registered successfully' };
+  } else {
+    return { success: false, message: 'User registration failed' };
+  }
+}
+
+export function login(email: string, password: string) {
+  const findUser = db.prepare(`
+    SELECT * FROM USERS WHERE email = ? AND password = ?
+  `);
+
+  const user = findUser.get(email, password);
+
+  if (user) {
+    return { success: true, message: 'Login successful', user };
+  } else {
+    return { success: false, message: 'Invalid email or password' };
+  }
+}
+
+export const connect = () => { 
+
     db.pragma('journal_mode = WAL');
 
     // Create the CATEGORIES table
@@ -42,8 +71,9 @@ export const connect = () => {
     createUserTable.run();
     // Create the ITEM table
     createItemTable.run();
-}
 
+
+}
 function insertCategory(categoryName: string): void {
     const insertCategoryStmt = db.prepare(`
       INSERT INTO CATEGORIES (category_name)
