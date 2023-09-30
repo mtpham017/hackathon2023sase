@@ -1,14 +1,12 @@
 import type { Actions } from './$types'
-import { connect, isConnected, login, signup } from '$lib/database';
+import { connect, isConnected, signup } from '$lib/database';
 import { redirect } from '@sveltejs/kit';
-
+import { session } from '$app/stores'
 
 export const load = () => {
-
     if(!isConnected) {
-        connect()
+        connect();
     } 
-
 };
 
 export const actions  = {
@@ -17,20 +15,26 @@ export const actions  = {
        const email = formData.get("email"),
              password  = formData.get("password");
              
-    
-    const authentication = signup(email, password);
-    if(authentication.success) {
-        cookies.set('access', 'true', { 
-            path: "/",
-            sameSite: 'strict',
-            maxAge: 60 * 60 * 24
-        })
-        throw redirect(302, "/fridge");
-    }
-
-    return {
-        email,
-        message: authentication.message
-    };
+       if(!email || !password ) {
+          return { 
+            message: "Missing required field",
+          }
+       }
+       const authentication = signup(email, password);
+       if(authentication.success) {
+           cookies.set('access', 'Bearer <token>', { 
+               path: "/",
+               sameSite: 'strict',
+               maxAge: 60 * 60 * 24,
+               httpOnly: true,
+               secure: true
+           })
+           throw redirect(302, "/fridge");
+       }
+   
+       return {
+           email,
+           message: authentication.message
+       };
    }
 } satisfies Actions;

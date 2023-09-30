@@ -20,11 +20,13 @@ export const actions  = {
     
     const authentication = login(email, password);
     if(authentication.success) {
-        cookies.set('access', 'true', { 
-            path: "/",
-            sameSite: 'strict',
-            maxAge: 60 * 60 * 24
-        })
+        cookies.set('access', 'Bearer <token>', { 
+               path: "/",
+               sameSite: 'strict',
+               maxAge: 60 * 60 * 24,
+               httpOnly: true,
+               secure: true
+        });
         throw redirect(302, "/fridge");
     }
 
