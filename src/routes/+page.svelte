@@ -11,7 +11,7 @@
   }
 
   .section-bg {
-    background-color: #eee;
+    background-color: #fefee3;
   }
 
   .section-header {
@@ -43,7 +43,7 @@
 
   /* Style the navigation bar */
   nav {
-    background-color: #00cc00; /* Set the background color */
+    background-color: #4c956c; /* Set the background color */
     color: white; /* Set text color */
     padding: 1rem;
     display: flex;
@@ -63,8 +63,8 @@
 
   /* Style the "Get Started" button */
   .get-started-button {
-    background-color: #007BFF; /* Primary color */
-    color: #fff;
+    background-color: #fefee3; /* Primary color */
+    color: #2c6e49;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
