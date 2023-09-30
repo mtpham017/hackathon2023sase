@@ -22,9 +22,12 @@ const createItemTable = db.prepare(`
   CREATE TABLE IF NOT EXISTS ITEM (
     item_id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
+    barcode INT,
+    expiration_date DATE,
     category_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES USER(user_id)
     FOREIGN KEY (category_id) REFERENCES CATEGORIES(category_id)
+    image BLOB
   )
 `);
 
