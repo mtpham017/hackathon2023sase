@@ -26,12 +26,24 @@ const createItemTable = db.prepare(`
     item_id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
     barcode INT,
-    expiration_date DATE,
+    nutrient_ID INT REFERENCES NUTRIENT(nutrient_ID),
     category_id INTEGER REFERENCES CATEGORIES(category_id),
     user_id INTEGER REFERENCES USER(user_id),
     image INT
   )
 `);
+
+const createNutrientTable = db.prepare(`
+  CREATE TABLE IF NOT EXISTS NUTRIENT (
+    nutrient_ID INTEGER PRIMARY KEY,
+    fat TEXT,
+    sodium TEXT,
+    carbs TEXT,
+    fiber TEXT,
+    calories TEXT
+  )
+  `);
+
 
 
 export function signup(email: string, password: string) {
@@ -83,16 +95,16 @@ function insertCategory(categoryName: string): void {
   }
 
 interface InsertItemParams { 
-    name: string, barcode: number, expirationDate: string, categoryId: number, userId: number, image: Buffer
+    name: string, barcode: number, nutrient_ID: number, categoryId: number, userId: number, image: Buffer
 
 }
 function insertItem(items: InsertItemParams): void {
     const insertItemStmt = db.prepare(`
-      INSERT INTO ITEM (name, barcode, expiration_date, category_id, user_id, image)
+      INSERT INTO ITEM (name, barcode, nutrient_ID, category_id, user_id, image)
       VALUES (?, ?, ?, ?, ?, ?)
     `);
-    const { name, barcode, expirationDate, categoryId, userId, image } = items;
-    insertItemStmt.run(name, barcode, expirationDate, categoryId, userId, image);
+    const { name, barcode, nutrient_ID, categoryId, userId, image } = items;
+    insertItemStmt.run(name, barcode, nutrient_ID, categoryId, userId, image);
 }
   
 //close database 
