@@ -1,7 +1,7 @@
 import type { Actions } from './$types'
 import { connect, isConnected, signup } from '$lib/database';
 import { redirect } from '@sveltejs/kit';
-import { session } from '$app/stores'
+import { generateSession } from '$lib/gentoken';
 
 export const load = () => {
     if(!isConnected) {
@@ -21,6 +21,9 @@ export const actions  = {
           }
        }
        const authentication = signup(email, password);
+
+       const id = generateSession(email, password); 
+       
        if(authentication.success) {
            cookies.set('access', 'Bearer <token>', { 
                path: "/",

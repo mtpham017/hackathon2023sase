@@ -26,6 +26,7 @@
 		"@svelteuidev/composables": "^0.15.3",
 		"@svelteuidev/core": "^0.15.3",
 		"better-sqlite3": "^8.6.0",
-		"html5-qrcode": "^2.3.8"
+		"html5-qrcode": "^2.3.8",
+		"svelte-kit-cookie-session": "^4.0.0"
 	}
 }
