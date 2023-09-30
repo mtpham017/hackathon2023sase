@@ -74,7 +74,7 @@
   </style>
   
   <div class="container">
-    <div class="header">Log In Here</div>
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
     <div class="form">
       <form on:submit="{handleSubmit}">
         <div class="form-element">
