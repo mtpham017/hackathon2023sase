@@ -1,11 +1,9 @@
 <script lang="ts">
     import { Grid } from '@svelteuidev/core';
     import Fooddisplayer from '../../../../components/fooddisplayer.svelte';
-    import IngredientTextInput from '../../../../components/IngredientTextInput.svelte';
-    import GenerateRecipeButton from '../../../../components/GenerateRecipeButton.svelte';
-  </script>
-  <IngredientTextInput></IngredientTextInput>
-  <GenerateRecipeButton></GenerateRecipeButton>
+    import AddFoodButton from '../../../../components/AddFoodButton.svelte';
+    </script>
+  <AddFoodButton></AddFoodButton>
   <Grid>
     <Grid.Col span={4}>
       <Fooddisplayer />

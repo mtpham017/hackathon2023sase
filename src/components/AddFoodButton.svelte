@@ -1,5 +1,7 @@
 <script lang="ts">
     import { Button } from '@svelteuidev/core';
+    import { TextInput } from '@svelteuidev/core';
+
     let foodData = null;
     let searchQuery = ''; // Initialize search query
 
@@ -23,8 +25,11 @@
     }
   }
   </script>
-
-  
+<TextInput
+placeholder="Ingredient Search"
+label="What's in your fridge?"
+/>
+ 
   <Button on:click={fetchFoodData}>
-    Generate Recipes
+    Add to Fridge
   </Button>
