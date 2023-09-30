@@ -1,60 +1,88 @@
 <svelte:head>
-	<title>How to play Sverdle</title>
-	<meta name="description" content=Shahidge />
+  <title>Virtual Kitchen Helper</title>
+  <meta name="description" content="Your Virtual Kitchen Assistant - Make Cooking Easier" />
 </svelte:head>
 
-<div class="text-column">
-    start!
+<div class="container">
+  <header>
+    <h1>Welcome to Virtual Kitchen Helper</h1>
+    <p>Your Virtual Kitchen Assistant for identifying ingredients, sharing nutritional facts, recommending recipes, and more.</p>
+  </header>
+
+  <section class="about">
+    <h2>About Virtual Kitchen Helper</h2>
+    <p>
+      Virtual Kitchen Helper is your all-in-one digital kitchen assistant. It helps you identify ingredients, shares nutritional facts, recommends delicious recipes based on what's in your pantry, and assists you in planning healthy and tasty meals.
+    </p>
+  </section>
+
+  <section class="technologies">
+    <h2>Technologies We Use</h2>
+    <ul>
+      <li>SvelteKit - A powerful web framework</li>
+      <li>React - A popular JavaScript library</li>
+      <li>VITE - For faster and better development</li>
+      <li>OpenFoodRepository API - For ingredient data</li>
+      <!-- Add more technologies as needed -->
+    </ul>
+  </section>
+
+  <section class="get-started">
+    <h2>Get Started</h2>
+    <p>
+      Start your culinary journey with Virtual Kitchen Helper. Discover new recipes, plan your meals, and make cooking easier and more enjoyable.
+    </p>
+    <button class="get-started-button">Get Started</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Virtual Kitchen Helper. All rights reserved.</p>
+  </footer>
 </div>
 
 <style>
-	span {
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 0.8em;
-		width: 2.4em;
-		height: 2.4em;
-		background-color: white;
-		box-sizing: border-box;
-		border-radius: 2px;
-		border-width: 2px;
-		color: rgba(0, 0, 0, 0.7);
-	}
+  /* Style the container to center its contents */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+  }
 
-	.missing {
-		background: rgba(255, 255, 255, 0.5);
-		color: rgba(0, 0, 0, 0.5);
-	}
+  /* Style the header */
+  header {
+    margin-bottom: 2rem;
+  }
 
-	.close {
-		border-style: solid;
-		border-color: var(--color-theme-2);
-	}
+  /* Style section headings */
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
 
-	.exact {
-		background: var(--color-theme-2);
-		color: white;
-	}
+  /* Style lists */
+  ul {
+    list-style: disc;
+    margin-left: 2rem;
+  }
 
-	.example {
-		display: flex;
-		justify-content: flex-start;
-		margin: 1rem 0;
-		gap: 0.2rem;
-	}
+  /* Style the "Get Started" button */
+  .get-started-button {
+    background-color: #007BFF; /* Primary color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
 
-	.example span {
-		font-size: 1.4rem;
-	}
-
-	p span {
-		position: relative;
-		border-width: 1px;
-		border-radius: 1px;
-		font-size: 0.4em;
-		transform: scale(2) translate(0, -10%);
-		margin: 0 1em;
-	}
+  /* Style the footer */
+  footer {
+    margin-top: 2rem;
+    color: #777;
+  }
 </style>
-
