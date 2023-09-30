@@ -2,8 +2,7 @@ const edamakey = "sadfafsdafds"
 import { env } from '$env/dynamic/private';
 
 
-
-
+const baselink = 'https://api.openfoodrepo.org/v1/';
 const options =  ( 
     method="GET",
     body?: any
@@ -16,11 +15,10 @@ const options =  (
     body: body
 } satisfies RequestInit);
 
-export const recipeGen = () => {
-    
-
+export const getFood = (query: string) => {
+   return fetch(baselink+"products"+query, options()) 
+        .then(res => res.json()); 
 }
-
 
 export const foodSearch = () => {
 
