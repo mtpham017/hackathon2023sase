@@ -7,12 +7,8 @@ import type { PageServerLoad } from './$types';
 export const load = (async ({ parent, locals }) => {
 
     const { session } = await parent();
-    console.log(session)
-
-    console.log(session.email)
-    // Already logged in:
     if(session.email) {
-	    throw redirect(302, '/')
+	    throw redirect(302, '/fridge')
     }
 }) satisfies PageServerLoad;
 
