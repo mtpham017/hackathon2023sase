@@ -1,52 +1,86 @@
+<!-- loginview.svelte -->
 <script lang="ts">
-    import {enhance} from '$app/forms'
-    import { goto } from '$app/navigation'
-    import type { ActionData } from './$types';
-    
-    export let form: ActionData
-    export let isSuccess: boolean = false;
-    
-    const redirectRegister = () => {
-        goto('/register') 
-    }
-    
-    </script>
-    
-    <form method='POST' use:enhance>
-        <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Login</h2>
-            </div>
-        </div>
-    </form>    
-    
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" action="#" method="POST">
-            <div>
-                <label for="business_id" class="block text-sm font-medium leading-6 text-gray-900">Business ID</label>
-                <div class="mt-2">
-                    <input id="business_id" name="business_id" type="number" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-            </div>
-            <div>
-                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-                <div class="mt-2">
-                    <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-            </div>
-            <div>
-                <div class="flex items-center justify-between">
-                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-                </div>
-                <div class="mt-2">
-                    <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-            </div>
-            <div style="margin-top: 10px;">
-                <button type="submit" class="flex w-full justify-center rounded-md bg-secondary-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ">Submit</button>
-            </div>
-            <!-- <div class="mt-4">
-                <button type="submit"class="flex w-full justify-center rounded-md border border-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-indigo-600 shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" on:click|preventDefault={redirectRegister}>Register</button>
-            </div> -->
-        </form>
-    </div>
+  import { enhance } from '$app/forms';
+  import { goto } from '$app/navigation';
+  import type { ActionData } from './$types';
+  import { PasswordInput, TextInput } from '@svelteuidev/core';
+  import { Button } from '@svelteuidev/core';
+
+  export let value = '';
+  export let form: ActionData;
+  export let isSuccess: boolean = false;
+
+  // Function to handle form submission
+  function handleSubmit(event: any) {
+    event.preventDefault();
+
+    // You can add your form submission logic here
+    // Example: Send data to the server, perform validation, etc.
+
+    // If the form submission is successful, set isSuccess to true
+    isSuccess = true;
+  }
+</script>
+
+<style>
+  /* Style the container to center its contents */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: url('/src/lib/images/galaxy.jpg') center/cover;
+  }
+
+  /* Style the login box */
+  .login-box {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    max-width: 400px;
+  }
+
+  /* Style the form elements */
+  .form-element {
+    margin-bottom: 16px;
+  }
+
+  /* Style the Log In button */
+  .login-button {
+    display: inline-block;
+    background-color: #007BFF; /* Primary color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  /* Media query for mobile responsiveness */
+  @media (max-width: 768px) {
+    /* Adjust styles for smaller screens if needed */
+  }
+</style>
+
+<div class="container">
+  <div class="login-box">
+    <h2 class="mt-4 text-2xl font-bold leading-9 tracking-tight">Sign in to your account</h2>
+    <form on:submit="{handleSubmit}">
+      <div class="form-element">
+        <TextInput placeholder="User Name" label="" />
+      </div>
+      <div class="form-element">
+        <PasswordInput placeholder="Password" bind:value />
+      </div>
+      <div class="form-element">
+        <!-- Add a button to trigger form submission -->
+        <Button type="submit" class="login-button">Log in</Button>
+      </div>
+    </form>
+  </div>
+</div>

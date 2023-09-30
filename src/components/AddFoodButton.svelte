@@ -34,7 +34,7 @@
       // Iterate through the API data and insert each item into the database
       apiData.forEach((apiItem: { name: any; barcode: any; expiration_date: any; category_id: any; user_id: any; image: WithImplicitCoercion<string> | { [Symbol.toPrimitive](hint: "string"): string; }; }) => {
         // Convert API data to the format expected by the database
-        const insertItem = {
+        const nsertItem = {
           name: apiItem.name,
           barcode: apiItem.barcode,
           expirationDate: apiItem.expiration_date,
@@ -44,7 +44,7 @@
         };
 
         // Insert the item into the database
-        insertItem(apiItem);
+        insertItem(nsertItem);
       });
     } else {
       console.error('Failed to fetch food data');
