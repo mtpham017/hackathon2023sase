@@ -1,5 +1,5 @@
 import type { Actions } from './$types'
-import { connect, isConnected, login } from '$lib/database';
+import { connect, isConnected, login, signup } from '$lib/database';
 import { redirect } from '@sveltejs/kit';
 
 
@@ -18,7 +18,7 @@ export const actions  = {
              password  = formData.get("password");
              
     
-    const authentication = login(email, password);
+    const authentication = signup(email, password);
     if(authentication.success) {
         cookies.set('access', 'true', { 
             path: "/",

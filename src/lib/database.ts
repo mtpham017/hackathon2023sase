@@ -3,7 +3,7 @@ import Database from 'better-sqlite3';
 
 // Create or open a SQLite database file
 const db = new Database('mydatabase.db', { verbose: console.log });
-
+export let isConnected = false;
 // Define the schema for the CATEGORIES table
 const createCategoriesTable = db.prepare(`
   CREATE TABLE IF NOT EXISTS CATEGORIES (
@@ -27,14 +27,14 @@ const createItemTable = db.prepare(`
     name TEXT NOT NULL,
     barcode INT,
     expiration_date DATE,
-    category_id INTEGER FOREIGN KEY (category_id) REFERENCES CATEGORIES(category_id),
-    user_id INTEGER FOREIGN KEY (user_id) REFERENCES USER(user_id),
-    image BLOB
+    category_id INTEGER REFERENCES CATEGORIES(category_id),
+    user_id INTEGER REFERENCES USER(user_id),
+    image INT
   )
 `);
 export function signup(email: string, password: string) {
   const insertUser = db.prepare(`
-    INSERT INTO USERS (email, password) VALUES (?, ?)
+    INSERT INTO USER (email, password) VALUES (?, ?)
   `);
 
   const result = insertUser.run(email, password);
@@ -48,7 +48,7 @@ export function signup(email: string, password: string) {
 
 export function login(email: string, password: string) {
   const findUser = db.prepare(`
-    SELECT * FROM USERS WHERE email = ? AND password = ?
+    SELECT * FROM USER WHERE email = ? AND password = ?
   `);
 
   const user = findUser.get(email, password);
@@ -69,6 +69,7 @@ export const connect = () => {
     createUserTable.run();
     // Create the ITEM table
     createItemTable.run();
+    isConnected = true;
 
 
 }
@@ -84,7 +85,7 @@ function insertCategory(categoryName: string): void {
   
   function insertUser(username: string): void {
     const insertUserStmt = db.prepare(`
-      INSERT INTO USERS (username)
+      INSERT INTO USER (username)
       VALUES (?)
     `);
     
