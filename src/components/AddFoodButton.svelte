@@ -26,10 +26,8 @@
   }
   </script>
 <TextInput
-placeholder="Ingredient Search"
-label="What's in your fridge?"
-/>
- 
+input type="text" bind:value={searchQuery} placeholder="Enter ingredients" 
+ />
   <Button on:click={fetchFoodData}>
     Add to Fridge
   </Button>
