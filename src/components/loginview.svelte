@@ -21,25 +21,25 @@
 </script>
 
 <style>
-  /* Style the container to center its contents */
+  /* Center the container contents */
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: url('/src/lib/images/galaxy.jpg') center/cover;
+    background-color: #fff;
   }
 
   /* Style the login box */
   .login-box {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     padding: 20px;
     text-align: center;
-    color: #fff;
+    color: #000;
     max-width: 400px;
   }
 
@@ -51,8 +51,8 @@
   /* Style the Log In button */
   .login-button {
     display: inline-block;
-    background-color: #007BFF; /* Primary color */
-    color: #fff;
+    background-color: #4c956c; /* Primary color */
+    color: #ffffff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -82,3 +82,4 @@
     </form>
   </div>
 </div>
+
