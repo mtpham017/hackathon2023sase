@@ -3,9 +3,12 @@
     import {Button} from '@svelteuidev/core'
   </script>
   
-  <Button 
+  <Button
+  class = "custom-but"
     on:click={() => { goto("/logout") }}
-    color="#4c956c"
+    color="#2c6e49"
+    
     ripple>
     Logout
   </Button>
+

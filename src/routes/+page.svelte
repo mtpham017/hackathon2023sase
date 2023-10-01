@@ -10,9 +10,19 @@
     font-family: 'Gabarito', sans-serif; 
     margin: 0;
     padding: 0;
+    overflow-x:hidden;
     
   }
 
+  .container{
+    aspect-ratio: 960/300;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url(/src/lib/images/blurry-gradient-haikei.svg);
+    
+  }
   section {
     height: 100vh; 
     display: flex;
@@ -80,6 +90,7 @@
   footer {
     color: #000000;
     text-align: center;
+    padding-bottom: 1px;
   }
 
   
@@ -88,11 +99,12 @@
 
 
 <div class="container">
+  
   <section class="header">
     <h1>Welcome to Sha'Mo</h1>
     <p>Your Virtual Kitchen Assistant for identifying ingredients, sharing nutritional facts, recommending recipes, and more.</p>
   </section>
-
+  
   <section class="aboutSect">
     <h2>About Sha'Mo</h2>
     <p>
@@ -100,7 +112,7 @@
     </p>
   </section>
   
-  <div class="curve"></div>
+  
   <section class="start">
     <h2>Get Started</h2>
     <p>
@@ -114,6 +126,7 @@
   <footer>
     <p>&copy; 2023 Virtual Kitchen Helper. All rights reserved.</p>
   </footer>
+
 </div>
 
 

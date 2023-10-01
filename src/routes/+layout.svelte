@@ -51,7 +51,7 @@
     border-radius: 30px;
     cursor: pointer;
     font-size: 1rem;
-    margin-right: 25px; 
+    margin-right: 20px; 
     transition: background-color 0.3s;
   }
 
@@ -63,7 +63,7 @@
     border-radius: 30px;
     cursor: pointer;
     font-size: 1rem;
-    margin-left:82rem;
+    margin-left:70rem;
     transition: background-color 0.3s;
   }
 
