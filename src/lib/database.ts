@@ -184,6 +184,10 @@ export function getRecipesByUserId (user_id: number) {
   return recipes;
 }
 
+export function getItemsByUserId(user_id: number) {
+  const query = db.prepare("SELECT * FROM ITEM WHERE user_id = ?");
+  return query.all(user_id);
+}
 
 const connect = () => { 
 

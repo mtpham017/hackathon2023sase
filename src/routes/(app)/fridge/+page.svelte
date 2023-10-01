@@ -8,11 +8,10 @@
   import type { ActionData } from './$types';
   
   $: {
-    console.log(data.session.user_id)
-    console.log(form?.food)
+     console.log(form?.food)
+     console.log(data)
   }
-  console.log(data)
-
+ 
   const apiUrl = "/api/item";
   async function addToFridge() {
     try {
