@@ -15,6 +15,8 @@ declare global {
 			name: string 
 			barcode : string 
 			score :number 
+			//defaults to 0 if not present
+			quantity: number 
 			nutrients : {
 				carbs : number
 				sodium: number
