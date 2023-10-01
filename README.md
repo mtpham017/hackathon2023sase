@@ -1,29 +1,29 @@
-#Virtual Kitchen Helper (SHAHUL)
+# Virtual Kitchen Helper (SHAHUL)
 
 Welcome to Virtual Kitchen Helper SHAHUL, your digital kitchen assistant for identifying ingredients, sharing nutritional facts, recommending recipes, and assisting you in planning meals wisely.
 
-##Table of Contents
--[Getting Started](#getting-started)
--[Prerequisites](#prerequisites)
--[Installation](#installation)
--[Usage](#usage)
--[Sign Up](#sign-up)
--[Log In](#log-in)
--[Fridge Management](#fridge-management)
--[Recipe Recommendations](#recipe-recommendations)
--[Contributing](#contributing)
+## Table of Contents
+- [Getting Started](#getting-started)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Sign Up](#sign-up)
+- [Log In](#log-in)
+- [Fridge Management](#fridge-management)
+- [Recipe Recommendations](#recipe-recommendations)
+- [Contributing](#contributing)
 
 
-##Getting Started
+## Getting Started
 
-###Prerequisites
+### Prerequisites
 
 Before you begin, ensure you have met the following requirements:
 
 -Node.js installed
 -SQLite database set up (instructions below)
 
-###Installation
+### Installation
 
 Clone the repository:
 git clone https://github.com/mtpham017/hackathon2023sase.git
@@ -46,7 +46,7 @@ KEY="Enter your Key" "Please request key from Owner"
 npm run dev
 Your Virtual Kitchen Helper app should now be running locally at your localhost
 
-Usage
+## Usage
 
 Sign Up
 Access the app at localhost
