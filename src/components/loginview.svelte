@@ -41,6 +41,7 @@
     text-align: center;
     color: #000;
     max-width: 400px;
+   
   }
 
   /* Style the form elements */
@@ -67,7 +68,7 @@
 
 <div class="container">
   <div class="login-box">
-    <h2 class="mt-4 text-2xl font-bold leading-9 tracking-tight">Sign in to your account</h2>
+    <h2 class="mt-4 text-2xl font-bold leading-9 tracking-tight">Login to your account</h2>
     <form method="POST">
       <div class="form-element">
         <TextInput placeholder="User Name"  name="email" label="" />
@@ -77,7 +78,7 @@
       </div>
       <div class="form-element">
         <!-- Add a button to trigger form submission -->
-        <Button type="submit" class="login-button">Log in</Button>
+        <Button color = #4c956c type="submit" class="login-button">Log in</Button>
       </div>
     </form>
   </div>

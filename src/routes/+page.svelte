@@ -7,9 +7,10 @@
 
 <style>
   :global(body) {
-    font-family: 'Your-Font-Here', sans-serif; 
+    font-family: 'Gabarito', sans-serif; 
     margin: 0;
     padding: 0;
+    
   }
 
   section {
@@ -18,38 +19,56 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    scroll-snap-align: start;
-  }
-
-  .container{
-    scroll-snap-type: y mandatory;
+    
+    
   }
 
   .header {
+    
     background-color: #fff;
+    font-family: 'Gabarito';
+    font-weight: 500;
+    background-image: url('src/lib/images/Fluid-10s-1920px.png');
+    
   }
-
 
   .header h1 {
-    font-size: 2rem;
+    font-size: 5rem;
+    margin-bottom: 5px;
   }
+  .header p {
+    font-size: 25px;
+  }
+  
 
   .aboutSect h2 {
-    font-size: 1.5rem;
+    font-size: 4rem;
+    padding-right: 70rem;
+    margin-bottom: 5px;
+  }
+  .aboutSect p{
+    margin-left: 99px;
+    padding-right: 60rem;
+    font-size: 25px;
+
   }
 
   .start h2 {
-    font-size: 2rem;
+    font-size: 3rem;
+    margin-bottom: 5px;
+  }
+  .start p{
+    font-size: 23px;
+    margin-bottom: 10px;
   }
 
  
   .start-button {
     background-color: #4c956c;
-    color: #fefee3;
+    color: #ffffff;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     font-size: 1rem;
     margin-top: 1rem;
@@ -69,17 +88,21 @@
 
 </style>
 
+
+
+
+
 <div class="container">
   
   <section class="header">
-    <h1>Welcome to <span>Virtual Kitchen Helper</span></h1>
+    <h1>Welcome to Sha'Mo</h1>
     <p>Your Virtual Kitchen Assistant for identifying ingredients, sharing nutritional facts, recommending recipes, and more.</p>
   </section>
 
   <section class="aboutSect">
-    <h2>About Virtual Kitchen Helper</h2>
+    <h2>About Sha'Mo</h2>
     <p>
-      Virtual Kitchen Helper is your all-in-one digital kitchen assistant. It helps you identify ingredients, shares nutritional facts, recommends delicious recipes based on what's in your pantry, and assists you in planning healthy and tasty meals.
+      Sha'Mo is your all-in-one digital kitchen assistant. It helps you identify ingredients, shares nutritional facts, recommends delicious recipes based on what's in your pantry, and assists you in planning healthy and tasty meals.
     </p>
   </section>
 

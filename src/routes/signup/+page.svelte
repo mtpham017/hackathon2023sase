@@ -1,5 +1,5 @@
 <script lang="ts">
-import LoginView from '../../components/loginview.svelte'
+import LoginView from '../../components/signupView.svelte'
 import type { ActionData } from './$types';
 
 export let form: ActionData
