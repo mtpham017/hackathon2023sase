@@ -21,6 +21,7 @@
     
   }
 
+
   nav ul {
     list-style: none;
     display: flex;
@@ -50,13 +51,28 @@
     border-radius: 30px;
     cursor: pointer;
     font-size: 1rem;
-    margin-right: 20px; 
+    margin-right: 25px; 
     transition: background-color 0.3s;
   }
 
+  .signup {
+    background-color: #fff;
+    color: #000000;
+    border: none;
+    padding: 10px 13px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left:82rem;
+    transition: background-color 0.3s;
+  }
 
   button:hover{
-    background-color: #1d4b31;;
+    background-color: #368b5b;;
+  }
+
+  .signup:hover{
+    background-color: #bdbdbd;
   }
 
 
@@ -71,9 +87,13 @@
       {#if isLoggedIn}
         <LogoutButton/>
       {:else}
+        <a href="/signup"> 
+          <button class="signup">Sign up</button>
+        </a>
         <a href="/login"> 
           <button class="login">Login</button>
         </a>
+        
       {/if}
     </nav>
 </header>
