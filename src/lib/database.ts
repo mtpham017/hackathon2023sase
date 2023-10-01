@@ -120,7 +120,7 @@ interface NutrientData {
 function insertItem(items: InsertItemParams) {
     const insertItemStmt = db.prepare(`
       INSERT INTO ITEM (name, barcode, nutrient_ID, user_id, image)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
+      VALUES (?, ?, ?, ?, ?)
     `);
     const { name, barcode, nutrient_ID, userId, image, quantity } = items;
     return insertItemStmt.run(name, barcode, nutrient_ID, userId, image);

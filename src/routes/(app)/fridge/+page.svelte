@@ -26,12 +26,13 @@
     }
     try {
 
-      const nutrients = {
-        sodium: data.get('nutrients-sodium'),
-        carbs: data.get('nutrients-carbs'),
-        fiber: data.get('nutrients-fiber'),
-        calories: data.get('nutrients-calories')
-    }
+          const nutrients = {
+            fat: data.get('nutrients-fat') ?? null,
+            sodium: data.get('nutrients-sodium'),
+            carbs: data.get('nutrients-carbs'),
+            fiber: data.get('nutrients-fiber'),
+            calories: data.get('nutrients-calories')
+        }
         const item = {
           name: data.get('name'),
           barcode: data.get('barcode'),
@@ -48,6 +49,11 @@
             item
           })
         })
+        if(response.ok) {
+          alert("Food added!")
+        } else {
+          alert("Something went wrong!")
+        }
     }
     catch(E) {
       
