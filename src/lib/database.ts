@@ -118,13 +118,14 @@ interface InsertItemParams {
     quantity: number
 
 }
-function insertItem(items: InsertItemParams): void {
+function insertItem(items: InsertItemParams) {
     const insertItemStmt = db.prepare(`
       INSERT INTO ITEM (name, barcode, nutrient_ID, category_id, user_id, image, quantity)
       VALUES (?, ?, ?, ?, ?, ?, ?)
+      RETURNING *
     `);
     const { name, barcode, nutrient_ID, categoryId, userId, image, quantity } = items;
-    insertItemStmt.run(name, barcode, nutrient_ID, categoryId, userId, image, quantity);
+    return insertItemStmt.get(name, barcode, nutrient_ID, categoryId, userId, image, quantity);
 }
   
 function updateQuantityOnItem(item_id:number, diff: number) {
