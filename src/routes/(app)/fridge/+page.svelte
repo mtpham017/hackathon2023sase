@@ -1,15 +1,16 @@
 <script lang="ts">
   import { Grid } from '@svelteuidev/core';
   import Fooddisplayer from '../../../components/fooddisplayer.svelte';
-  import IngredientTextInput from '../../../components/IngredientTextInput.svelte';
-  import AddFoodButton from '../../../components/AddFoodButton.svelte';
-  import { onMount } from 'svelte';
-  import type { PageData } from './$types';
+   import type { PageData } from './$types';
+   import AddFoodButton from '../../../components/AddFoodButton.svelte';
   export let data : PageData
+  export let form: ActionData
+  import type { ActionData } from './$types';
+
  
   </script>
-
-<AddFoodButton />
+ 
+ <AddFoodButton {form}/>
 
 <Grid>
   {#each data.food as food, i}
