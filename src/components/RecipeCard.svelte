@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Badge, Button, Card, Grid, Group, Image, Text } from '@svelteuidev/core';
+	import { Button, Card, Grid, Group, Image, Text } from '@svelteuidev/core';
     import img from '$lib/images/galaxy.jpg'
     export let recipe_name: string;
     export let items: App.FoodData[]

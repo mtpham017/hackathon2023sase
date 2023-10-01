@@ -4,7 +4,6 @@
   import IngredientTextInput from '../../../components/IngredientTextInput.svelte';
   import AddFoodButton from '../../../components/AddFoodButton.svelte';
   import type { PageData } from './$types';
-  import AddFoodButton from '../../../components/AddFoodButton.svelte';
   export let data : PageData
   export let form: ActionData
   import type { ActionData } from './$types';
