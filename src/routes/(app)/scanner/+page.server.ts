@@ -67,9 +67,6 @@ export async function load() {
     food: []
   };
 }
-<<<<<<< HEAD
-    }
-=======
 }
 
 export const actions  = {
@@ -78,4 +75,3 @@ export const actions  = {
         const searchQuery = formData.get("")
      }
 }
->>>>>>> b256c18 (scanner)
