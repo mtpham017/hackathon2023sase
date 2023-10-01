@@ -1,22 +1,20 @@
 <script lang="ts">
-    import { Grid } from '@svelteuidev/core';
-    import Fooddisplayer from '../../../components/fooddisplayer.svelte';
-    import IngredientTextInput from '../../../components/IngredientTextInput.svelte';
-    import AddFoodButton from '../../../components/AddFoodButton.svelte';
+  import { Grid } from '@svelteuidev/core';
+  import Fooddisplayer from '../../../components/fooddisplayer.svelte';
+  import IngredientTextInput from '../../../components/IngredientTextInput.svelte';
+  import AddFoodButton from '../../../components/AddFoodButton.svelte';
+  import { onMount } from 'svelte';
+  import type { PageData } from './$types';
+  export let data : PageData
+ 
   </script>
 
-  <IngredientTextInput></IngredientTextInput>
-  <AddFoodButton/>
-  <Grid>
+<AddFoodButton />
+
+<Grid>
+  {#each data.food as food, i}
     <Grid.Col span={4}>
-      <Fooddisplayer />
+      <Fooddisplayer food = {foodData} />
     </Grid.Col>
-    <Grid.Col span={4}>
-      <Fooddisplayer />
-    </Grid.Col>
-    <Grid.Col span={4}>
-      <Fooddisplayer />
-    </Grid.Col>
-    <!-- Add more Grid.Col elements as needed -->
-  </Grid>
-  
+  {/each}
+</Grid>
