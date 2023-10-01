@@ -1,6 +1,7 @@
 <script lang="ts">
     import BarcodeScanner from "../../../components/barcodeScanner.svelte";
     import type { ActionData } from "./$types";
+    
     let decodeResult: string;
     let modalMessage:string
     let modalVisible: boolean

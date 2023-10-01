@@ -3,8 +3,8 @@ export async function load() {
     const apiKey = env.OPENFOODREPO_API_KEY;
     let food: App.FoodData[] = [];
     try {
-    const apiUrl = 'https://www.foodrepo.org/api/v3/products/?'+"barcode="+"071828009018"+"&api_key="+apiKey;
-   // Include the search query in the API URL
+      const apiUrl = `https://www.foodrepo.org/api/v3/products/?barcode=${barcode}&api_key=${apiKey}`;
+      // Include the search query in the API URL
     // Create headers and include the API key
    const headers = new Headers({
      'Authorization': `Token token=${apiKey}`,
@@ -12,25 +12,12 @@ export async function load() {
      'Accept': 'application/json'
    });
 
-   const requestBody ={
-    _source: {
-        includes: ["barcode", "name", "images","nutrients", "name_translations.en"]           
-    },
-    size:20,
-    query: {
-        query_string: {
-            query: searchQuery
-        }
-      }
-   }
 
    const response = await fetch(apiUrl, {
-     method: 'POST',
+     method: 'GET',
      headers: headers,
-     body: JSON.stringify(requestBody),
-   });
-   console.log(requestBody)
-
+    });
+ 
    if (response.ok) {
 
     const apiData = await response.json();
