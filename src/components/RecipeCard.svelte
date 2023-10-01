@@ -27,13 +27,5 @@
             </Card.Section>
         </Card>
     </Grid.Col> 
-{:else}
-    <Grid.Col md={4} lg={2}>
-        <Card shadow='sm' padding='lg'>
-            <Group position="apart">
-                <Button color="#4c956c" fullSize variant="outline">+</Button>
-            </Group>
-        </Card>
-    </Grid.Col>
 {/if}
 

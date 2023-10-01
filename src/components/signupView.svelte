@@ -36,15 +36,16 @@
       justify-content: center;
       min-height: 80vh;
       background-color: #fff;
+      
     }
   
     /* Style the login box */
-    .login-box {
-      background-color: #fff;
+    .signup-box {
+      background-color: #ffffff;
       border: 1px solid #ccc;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      padding: 20px;
+      padding:20px;
       text-align: center;
       color: #000;
       max-width: 400px;
@@ -57,7 +58,7 @@
     }
   
     /* Style the Log In button */
-    .login-button {
+    .signup-button {
       display: inline-block;
       background-color: #4c956c; /* Primary color */
       color: #ffffff;
@@ -74,7 +75,7 @@
   </style>
   
   <div class="container">
-    <div class="login-box">
+    <div class="signup-box">
       <h2 class="mt-4 text-2xl font-bold leading-9 tracking-tight">Create an Account</h2>
       <form method="POST">
         <div class="form-element">
@@ -85,7 +86,7 @@
         </div>
         <div class="form-element">
           <!-- Add a button to trigger form submission -->
-          <Button color = #4c956c type="submit" class="login-button">Sign Up</Button>
+          <Button color = #4c956c type="submit" class="signup-box-button">Sign Up</Button>
         </div>
       </form>
     </div>
