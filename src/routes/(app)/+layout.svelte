@@ -5,7 +5,5 @@
 </script>
 
 <SvelteUIProvider withNormalizeCSS withGlobalStyles>
-	<BarcodeModalIngredientPopUp />
-</SvelteUIProvider>
-
 <slot/>
+</SvelteUIProvider>
