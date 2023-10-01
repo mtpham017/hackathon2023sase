@@ -3,13 +3,14 @@
     import { TextInput } from '@svelteuidev/core';
     import type { ActionData } from './$types';
 
- 
+    export let data : PageData
+
     export let form: ActionData;
 
     export let searchQuery = ''; // Initialize search query
 
   </script>
-<form on:submit={}> 
+<form method ='POST'> 
     <TextInput
         input type="text" bind:value={searchQuery} placeholder="Enter ingredients" 
      />
