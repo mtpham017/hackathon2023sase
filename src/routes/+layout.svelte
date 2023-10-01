@@ -1,22 +1,16 @@
-<nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/fridge">Fridge</a></li>
-    </ul>
-    <button class="login">Login</button>
-  </nav>
-<slot/>
+<!-- layout.svelte -->
 
 <style>
-    /* Style the navigation bar */
   nav {
-    background-color: #4c956c;
+    position: sticky;
+    top: 0;
+    background-color: #2c6e49;
     color: white;
     padding: 1rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    z-index: 100; /* Ensure the navbar is on top of the content */
   }
 
   nav ul {
@@ -33,19 +27,30 @@
   }
 
   nav ul a:hover {
-    color: #fefee3;
+    color: #d1d1ba;
   }
 
   .login {
-  background-color: #2c6e49;
-  color: #fefee3;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-right: 20px; /* Center horizontally with 'auto' for left and right margins */
-  transition: background-color 0.3s;
-}
-
+    background-color: #4c956c;
+    color: #fefee3;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 20px; 
+    transition: background-color 0.3s;
+  }
 </style>
+
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/fridge">Fridge</a></li>
+  </ul>
+  <a href="/login"> 
+    <button class="login">Login</button>
+  </a>
+</nav>
+
+<slot />
