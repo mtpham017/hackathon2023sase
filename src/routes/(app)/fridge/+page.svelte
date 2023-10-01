@@ -6,7 +6,6 @@
   export let data : PageData
   export let form: ActionData
   import type { ActionData } from './$types';
-  import { insertItem } from '$lib/database';
   
   $: {
     console.log(data.session.user_id)

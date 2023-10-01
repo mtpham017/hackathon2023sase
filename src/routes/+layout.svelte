@@ -67,6 +67,8 @@
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/fridge">Fridge</a></li>
+        <li><a href="/fridge/recipe">Recipes</a></li>
+        <li><a href="/pantry">Pantry</a></li>
       </ul>
       {#if isLoggedIn}
         <LogoutButton/>
