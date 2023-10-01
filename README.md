@@ -1,38 +1,81 @@
-# create-svelte
+#Virtual Kitchen Helper (SHAHUL)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Welcome to Virtual Kitchen Helper SHAHUL, your digital kitchen assistant for identifying ingredients, sharing nutritional facts, recommending recipes, and assisting you in planning meals wisely.
 
-## Creating a project
+##Table of Contents
+-[Getting Started](#getting-started)
+-[Prerequisites](#prerequisites)
+-[Installation](#installation)
+-[Usage](#usage)
+-[Sign Up](#sign-up)
+-[Log In](#log-in)
+-[Fridge Management](#fridge-management)
+-[Recipe Recommendations](#recipe-recommendations)
+-[Contributing](#contributing)
 
-If you're seeing this, you've probably already done this step. Congrats!
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+##Getting Started
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+###Prerequisites
 
-## Developing
+Before you begin, ensure you have met the following requirements:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+-Node.js installed
+-SQLite database set up (instructions below)
 
-```bash
+###Installation
+
+Clone the repository:
+git clone https://github.com/mtpham017/hackathon2023sase.git
+
+Navigate to the project directory:
+
+cd hackathon2023sase
+
+Install the required dependencies:
+
+npm install
+
+Configure environment variables:
+
+Create a .env file in the project directory.
+Define environment variables for database connection and other sensitive information.
+copy paste to .env file 
+OPENFOODREPO_API_KEY="Enter Your API key" "Please request key from Owner"
+KEY="Enter your Key" "Please request key from Owner"
 npm run dev
+Your Virtual Kitchen Helper app should now be running locally at your localhost
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+Usage
 
-## Building
+Sign Up
+Access the app at localhost
+Click on the "Sign Up" button.
+Fill in your user information and preferences.
+Click "Sign Up" to create your account.
 
-To create a production version of your app:
+Log In
+Access the app at localhost
+Click on the "Log In" button.
+Enter your credentials (username and password).
+Click "Log In" to access your account.
 
-```bash
-npm run build
-```
+Fridge Management
+After logging in, go to the "Fridge" section.
+Add ingredients to your virtual fridge by searching or scanning barcodes.
+View and manage your ingredient inventory.
 
-You can preview the production build with `npm run preview`.
+Recipe Recommendations
+Explore the "Recipes" section to discover recipes.
+Use the "What's in My Fridge?" feature to find recipes based on your available ingredients.
+Access nutritional facts, ingredients, and preparation instructions for each recipe.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+Contributing
+Contributions are what make the open-source community an amazing place to be, learn, and grow. We welcome contributions from the community.
+
+Fork the project.
+Create your feature branch: git checkout -b feature/feature-name.
+Commit your changes: git commit -m 'Add some feature'.
+Push to the branch: git push origin feature/feature-name.
+Open a pull request.
