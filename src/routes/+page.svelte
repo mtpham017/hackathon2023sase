@@ -11,24 +11,25 @@
     margin: 0;
     padding: 0;
   }
-  
 
- 
   section {
     height: 100vh; 
-    scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    scroll-snap-align: start;
+  }
+
+  .container{
+    scroll-snap-type: y mandatory;
   }
 
   .header {
     background-color: #fff;
   }
 
- 
 
   .header h1 {
     font-size: 2rem;
