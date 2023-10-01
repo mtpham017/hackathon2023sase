@@ -35,7 +35,6 @@ export const load  = async() => {
    if (response.ok) {
 
     const apiData = await response.json();
-     console.log(apiData.hits.hits)
     // Iterate through the API data and insert each item into the database
     const mapToFoodData = apiData.hits.hits.map((element: any) => {
         const { carbohydrates, sodium, fiber, protein, energy_calories_kcal } = element._source.nutrients
@@ -62,11 +61,7 @@ export const load  = async() => {
     return {
     food
     }
-   } else {
-    return{
-        food: []
-    }
-  }
+   }  
 } catch (error) {
   console.error('An error occurred while fetching food data:', error)
   return {

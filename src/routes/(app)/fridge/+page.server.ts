@@ -80,3 +80,11 @@ export const load  = async() => {
 }
 }
 
+
+export const actions = {
+  default : () => {
+    console.log("hello")
+
+  }
+
+}

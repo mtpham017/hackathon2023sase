@@ -10,7 +10,7 @@
     export let searchQuery = ''; // Initialize search query
 
   </script>
-<form method ='POST'> 
+<form method="POST"> 
     <TextInput
         input type="text" bind:value={searchQuery} placeholder="Enter ingredients" 
      />
