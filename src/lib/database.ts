@@ -26,11 +26,10 @@ const createItemTable = db.prepare(`
     item_id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
     barcode INT,
-    quantity INT DEFAULT 0,
     nutrient_ID INT REFERENCES NUTRIENT(nutrient_ID),
     category_id INTEGER REFERENCES CATEGORIES(category_id),
     user_id INTEGER REFERENCES USER(user_id),
-    image INT
+    image TEXT
   )
 `);
 
@@ -60,7 +59,6 @@ const createRecipeItemTable = db.prepare(`
     CREATE TABLE IF NOT EXISTS recipe_item (
       recipe_id INTEGER NOT NULL,
       item_id INTEGER NOT NULL,
-      quantity INTEGER,
       FOREIGN KEY (recipe_id) REFERENCES recipe (recipe_id),
       FOREIGN KEY (item_id) REFERENCES item (item_id)
     )
@@ -155,60 +153,24 @@ export {
 
 
 // Exported function to insert a new recipe with items and quantities
-export function insertRecipe(recipeName:string, itemsWithQuantity, user_id: number) {
+export function insertRecipe(recipeName:string, item_ids: number[], user_id: number) {
   const insertRecipeStmt = db.prepare(`
-    INSERT INTO recipe (recipe_name)
-    VALUES (?)
+    INSERT INTO recipe (recipe_name, user_id)
+    VALUES (?, ?)
+    RETURNING *
   `);
 
-  const insertRecipeItemStmt = db.prepare(`
-    INSERT INTO recipe_item (recipe_id, item_id, quantity)
-    VALUES (?, ?, ?)
-  `);
-
-  // Serialize the array to JSON before inserting it into the database
-  const itemsJson = JSON.stringify(itemsWithQuantity);
-
-  db.transaction(() => {
-    insertRecipeStmt.run(recipeName);
-    const recipeId = db.prepare('SELECT last_insert_rowid()').get()['last_insert_rowid()'];
-    itemsWithQuantity.forEach(item => {
-      insertRecipeItemStmt.run(recipeId, item.item_id, item.quantity);
-    });
-  })();
-}
-
-export function getItemsByUserId(userId: number) {
-  const query = db.prepare('SELECT * FROM ITEM WHERE user_id = ?');
-  const items = query.all(userId);
-  return items;
-}
-
-// Exported function to get a recipe by ID, including items and quantities
-export function getRecipeById(recipeId:number) {
-  const getRecipeStmt = db.prepare(`
-    SELECT recipe.recipe_id, recipe.recipe_name, recipe_item.quantity
-    FROM recipe
-    LEFT JOIN recipe_item ON recipe.recipe_id = recipe_item.recipe_id
-    LEFT JOIN item ON recipe_item.item_id = item.item_id
-    WHERE recipe.recipe_id = ?
-  `);
-
-  const rows = getRecipeStmt.all(recipeId);
-
-  if (rows.length > 0) {
-    const recipe = {
-      recipe_id: rows[0].recipe_id,
-      recipe_name: rows[0].recipe_name,
-      items: rows.map(row => ({
-        item_name: row.item_name,
-        quantity: row.quantity,
-      })),
-    };
-    return recipe;
-  } else {
-    return null; // Recipe not found
+  const data = insertRecipeStmt.get(recipeName, user_id)
+  for(const id of item_ids) {
+    const insertRecipeItemStmt = db.prepare(`
+      INSERT INTO recipe_item (recipe_id, item_id)
+      VALUES (?, ?)
+    `);
+    console.log(id)
+    insertRecipeItemStmt.run(data.recipe_id, id)
   }
+
+  
 }
 
 export function getRecipesByUserId (user_id: number) {
