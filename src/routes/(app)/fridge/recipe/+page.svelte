@@ -4,11 +4,11 @@
     import RecipeCard from '../../../../components/RecipeCard.svelte';
     import Fooddisplayer from '../../../../components/fooddisplayer.svelte';
     export let data : PageData
+    $:food = data.food
 
     let onClickRecipe = () => {
 
-    }
-
+    }    
 </script>
 
 <div id="page">
@@ -28,6 +28,7 @@
       {#if data.recipes.length == 0}
         <Grid>
             <RecipeCard
+                recipe_name={undefined}
                 items={[]}
             />
         </Grid>
@@ -38,7 +39,6 @@
                 recipe_name={recipe.recipe_name}
                 items={[]}
             />
-            <Grid.Col span={4}>1</Grid.Col>
             {/each}
         </Grid>
       {/if}

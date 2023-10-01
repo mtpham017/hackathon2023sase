@@ -1,6 +1,11 @@
 <script lang="ts">
   import { Grid } from '@svelteuidev/core';
   import Fooddisplayer from '../../../components/fooddisplayer.svelte';
+<<<<<<< HEAD
+=======
+  import IngredientTextInput from '../../../components/IngredientTextInput.svelte';
+  import AddFoodButton from '../../../components/AddFoodButton.svelte';
+>>>>>>> a5b8089 (database, rm navbar)
   import type { PageData } from './$types';
   import AddFoodButton from '../../../components/AddFoodButton.svelte';
   export let data : PageData
