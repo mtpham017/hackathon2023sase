@@ -12,10 +12,10 @@
     <Grid>
       {#each form.food as food, i}
         <Grid.Col span={4}>
-          <Fooddisplayer on:click={() => addToFridge(food)} {food} />
+          <Fooddisplayer  {food} />
         </Grid.Col>
       {/each}
     </Grid>
     {:else}
-      <p1>Start searhing for food!</p1>
+      <p1>Start searching for food!</p1>
   {/if}

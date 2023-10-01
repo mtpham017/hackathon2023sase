@@ -15,8 +15,6 @@ declare global {
 			name: string 
 			barcode : string 
 			score :number 
-			//defaults to 0 if not present
-			quantity: number 
 			nutrients : {
 				carbs : number
 				sodium: number
@@ -28,6 +26,7 @@ declare global {
 			userID : number 
 			image: string 
 		}
+		
 		// interface Error {}
 		interface Locals {
                     session: Session<SessionData>
@@ -38,7 +37,7 @@ declare global {
 
 		interface GetRecipeData {
 			recipe_name: string
-
+			item_ids: number[]
 		}
 		// interface Platform {}
 	}

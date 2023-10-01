@@ -1,17 +1,24 @@
 <script lang="ts">
-    import { Button, Card, Grid, Group, Text, TextInput } from '@svelteuidev/core';
+    import { Button, Card, Grid, Group, TextInput } from '@svelteuidev/core';
     import type { PageData } from './$types';
     import RecipeCard from '../../../../components/RecipeCard.svelte';
     import RecipeFoodSelect from '../../../../components/RecipeFoodSelect.svelte';
     export let data : PageData
     $:food = data.food
     let showRecipeBuilder = false
+    let totalRecipeListSize = 0
     let newRecipe = (e) => {
         e.preventDefault();
         showRecipeBuilder = true
     }    
-    let addNewRecipe = () => {
-        
+    let addNewRecipe = (e) => {
+        e.preventDefault();
+        totalRecipeListSize++
+    }
+    let reset = (e) => {
+        e.preventDefault()
+        totalRecipeListSize = 0
+        showRecipeBuilder = false
     }
 </script>
 
@@ -22,12 +29,28 @@
                 <form method="POST">
                     <Grid.Col>
                         <Card shadow='sm' padding='lg'>
-                            <RecipeFoodSelect food={food}/>
+                            <TextInput
+                                placeholder="Recipe name"
+                                type="text"
+                                name="name"
+                                value="recipe name">
+                            </TextInput>
+                            {#each {length: totalRecipeListSize} as _, i}
+                                <RecipeFoodSelect id={i+1} food={food}/>
+                            {/each}
                             <Button 
                                 color="#4c956c"
-                                on:click={newRecipe}
+                                on:click={addNewRecipe}
                                 fullSize variant="outline">+
                             </Button>
+                            <Group>
+                                <Button variant="outline" color="#4c956c">
+                                    ✔
+                                </Button>
+                                <Button variant="outline" on:click={reset} color="red">
+                                    ✖
+                                </Button>
+                            </Group>
                         </Card>
                     </Grid.Col>
                 </form>
