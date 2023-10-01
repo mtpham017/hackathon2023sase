@@ -1,4 +1,12 @@
 <!-- layout.svelte -->
+<script lang="ts">
+  import type { PageData } from "./$types";
+  import LogoutButton from "../components/logoutbutton.svelte";
+
+  export let data : PageData
+  $: isLoggedIn = data.session.user_id !== undefined
+
+</script>
 
 <style>
   nav {
@@ -43,14 +51,20 @@
   }
 </style>
 
-<nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/fridge">Fridge</a></li>
-  </ul>
-  <a href="/login"> 
-    <button class="login">Login</button>
-  </a>
-</nav>
+<header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/fridge">Fridge</a></li>
+      </ul>
+      {#if isLoggedIn}
+        <LogoutButton/>
+      {:else}
+        <a href="/login"> 
+          <button class="login">Login</button>
+        </a>
+      {/if}
+    </nav>
+</header>
 
 <slot />
