@@ -1,4 +1,4 @@
-import { getRecipesByUserId, insertRecipe } from '$lib/database'
+import { getRecipesByUserId, insertRecipe, getItemsByUserId } from '$lib/database'
 import type { PageServerLoad } from './$types'
 import type { Actions } from '@sveltejs/kit';
 interface Recipe { 
@@ -7,8 +7,7 @@ interface Recipe {
 }
 export const load = (async ({parent} ) => {
    const { user_id, email } = (await parent()).session
-
-   const food = getRecipesByUserId(user_id) as App.FoodData[]
+   const food = getItemsByUserId(user_id) as App.FoodData[]
    const recipes = getRecipesByUserId(user_id) as Recipe[]
    return {
       food,

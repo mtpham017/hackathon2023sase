@@ -2,7 +2,6 @@
   import { NativeSelect } from '@svelteuidev/core';
   export let food : unknown[]  
   export let id: number
-  console.log(id)
 </script>
 
 <NativeSelect 
