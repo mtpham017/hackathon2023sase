@@ -12,13 +12,13 @@
   nav {
     position: sticky;
     top: 0;
-    background-color: #2c6e49;
-    color: white;
-    padding: 1rem 0;
+    background-color: #ffffff;
+    color: rgb(255, 255, 255);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100; /* Ensure the navbar is on top of the content */
+    
   }
 
   nav ul {
@@ -30,25 +30,36 @@
   nav ul a {
     font-size: 25px;
     text-decoration: none;
-    color: white;
+    color: #2c6e49;
     transition: color 0.3s;
+    margin-right:10px;
   }
 
   nav ul a:hover {
-    color: #d1d1ba;
+    color: #1d4b31;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    
   }
 
   .login {
-    background-color: #4c956c;
-    color: #fefee3;
+    background-color: #2c6e49;
+    color: #ffffff;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     font-size: 1rem;
     margin-right: 20px; 
     transition: background-color 0.3s;
   }
+
+
+  button:hover{
+    background-color: #1d4b31;;
+  }
+
+
 </style>
 
 <header>
