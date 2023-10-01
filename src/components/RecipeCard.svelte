@@ -3,7 +3,7 @@
     export let recipe_name: string;
     export let items: App.FoodData[]
 </script>
-
+    
 {#if recipe_name}
     <Grid.Col md={4} lg={2}>
         <Card shadow='sm' padding='lg'>
@@ -12,7 +12,7 @@
                 <ul>
                     {#each items as item}
                         <li>
-                            <Text>{item.name.substring(0, 10)+"..."}</Text>
+                            <Text>{item.name.substring(0, 10)}</Text>
                         </li>    
                     {/each}
                 </ul>
