@@ -74,8 +74,6 @@
             />
             {/each}
         </Grid>
-
-
     </div>
   </div>
 

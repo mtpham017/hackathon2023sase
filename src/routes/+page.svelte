@@ -1,7 +1,7 @@
 <!-- App.svelte -->
 
 <svelte:head>
-  <title>Virtual Kitchen Helper</title>
+  <title>Sha'Mo</title>
   <meta name="description" content="Your Virtual Kitchen Assistant - Make Cooking Easier" />
 </svelte:head>
 
@@ -11,8 +11,18 @@
     margin: 0;
     padding: 0;
     
+    
   }
 
+  .container{
+    aspect-ratio: 960/300;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    background-image: url(/src/lib/images/blurry-gradient-haikei.svg);
+    
+  }
   section {
     height: 100vh; 
     display: flex;
@@ -22,10 +32,9 @@
   }
 
   .header {
-    
-    background-color: #fff;
     font-family: 'Gabarito';
     font-weight: 500;
+    
   }
 
   .header h1 {
@@ -34,10 +43,12 @@
   }
   .header p {
     font-size: 25px;
+    text-align: center;
   }
   
 
   .aboutSect h2 {
+    
     font-size: 4rem;
     padding-right: 70rem;
     margin-bottom: 5px;
@@ -46,6 +57,8 @@
     margin-left: 99px;
     padding-right: 60rem;
     font-size: 25px;
+    max-width: 800px;
+    text-align: left;
 
   }
 
@@ -56,6 +69,8 @@
   .start p{
     font-size: 23px;
     margin-bottom: 10px;
+    max-width: 800px;
+    text-align: center;
   }
 
  
@@ -80,6 +95,31 @@
   footer {
     color: #000000;
     text-align: center;
+    padding-bottom: 1px;
+  }
+
+  @media screen and (max-width: 768px) {
+    
+    .container {
+      aspect-ratio: 1; 
+    }
+
+    .header h1 {
+      font-size: 3rem;
+    }
+
+    .aboutSect h2 {
+      font-size: 3rem;
+    }
+
+    .aboutSect p,
+    .start p {
+      font-size: 18px;
+    }
+
+    .start-button {
+      font-size: 0.8rem;
+    }
   }
 
   
@@ -88,11 +128,12 @@
 
 
 <div class="container">
+  
   <section class="header">
     <h1>Welcome to Sha'Mo</h1>
     <p>Your Virtual Kitchen Assistant for identifying ingredients, sharing nutritional facts, recommending recipes, and more.</p>
   </section>
-
+  
   <section class="aboutSect">
     <h2>About Sha'Mo</h2>
     <p>
@@ -100,7 +141,7 @@
     </p>
   </section>
   
-  <div class="curve"></div>
+  
   <section class="start">
     <h2>Get Started</h2>
     <p>
@@ -114,8 +155,7 @@
   <footer>
     <p>&copy; 2023 Virtual Kitchen Helper. All rights reserved.</p>
   </footer>
+
 </div>
-
-
 
 

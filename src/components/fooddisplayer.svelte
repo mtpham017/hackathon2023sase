@@ -13,7 +13,7 @@ export let food : App.FoodData
   </Card.Section>
 
   <Group position="apart">
-    <Text weight={500}>{food.name}</Text>
+    <Text weight={500} style = "font-size: 24px; font-family:'Gabarito', sans-serif;text-align:center; width:100%; padding-top:1rem; padding-bottom:1rem">{food.name}</Text>
   </Group>
 
   <Text size="sm">
@@ -40,7 +40,7 @@ export let food : App.FoodData
     Calories: {food.nutrients.calories}
   </Text>
 
-  <Button on:click variant="outline" color="#2c6e49" fullSize>
+  <Button on:click variant="outline" color="#2c6e49" style="margin-top:1rem" fullSize>
     Add
   </Button>
 </Card>
