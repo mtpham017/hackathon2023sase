@@ -2,7 +2,7 @@
     import { Button } from '@svelteuidev/core';
     import { TextInput } from '@svelteuidev/core';
 
-     let searchQuery = ''; // Initialize search query
+    export let searchQuery = ''; // Initialize search query
 
   </script>
 <form method="POST"> 
