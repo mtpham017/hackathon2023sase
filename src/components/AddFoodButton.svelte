@@ -6,16 +6,13 @@
     export let data : PageData
 
     export let form: ActionData;
-
+    
     export let searchQuery = ''; // Initialize search query
 
   </script>
-<form method="POST"> 
+<form on:submit={}> 
     <TextInput
-        input type="text" bind:value={searchQuery} placeholder="Enter ingredients" 
+        input type="text" name="query" bind:value={searchQuery} placeholder="Enter ingredients" 
      />
-    <Button on:click={() => {}} form action="/fridge">
-        Add to Fridge
-    </Button>
 </form>
 

@@ -1,17 +1,20 @@
 import { getItemsByUserId, getRecipeById, getRecipesByUserId } from '$lib/database'
 import type { PageServerLoad } from './$types'
 
+interface Recipe { 
+   recipe_name: string
+   
+}
 export const load = (async ({parent} ) => {
    const { user_id, email } = (await parent()).session
 
-   const food = getItemsByUserId(user_id)
+   const food = getItemsByUserId(user_id) as App.FoodData[]
+   const recipes = getRecipesByUserId(user_id) as Recipe[]
 
-   const recipes = getRecipesByUserId(user_id)
-   console.log(food)
-   console.log(recipes)
    return {
       food,
       user_id,
-      email
+      email,
+      recipes
    }
 }) satisfies PageServerLoad

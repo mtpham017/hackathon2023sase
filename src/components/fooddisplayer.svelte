@@ -40,8 +40,8 @@ export let food : App.FoodData
     Calories: {food.nutrients.calories}
   </Text>
 
-  <Button variant="light" color="blue" fullSize>
-    Book classic tour now
+  <Button on:click variant="outline" color="#2c6e49" fullSize>
+    Add
   </Button>
 </Card>
 
