@@ -3,21 +3,11 @@ import type { Action } from './$types'
 import { env } from '$env/dynamic/private'
 import { setContext } from 'svelte';
 import type Fooddisplayer from '../../../components/fooddisplayer.svelte';
-
-interface FoodData {
-    name: string 
-    barcode : string 
-    score :number 
-    nutrients : number 
-    categoryID : number
-    userID : number 
-    image: string 
-
-}
+ 
 export const load  = async() => {
     let searchQuery = ''
     const apiKey = env.OPENFOODREPO_API_KEY;
-    let food: FoodData[] = [];
+    let food: App.FoodData[] = [];
     try {
     const apiUrl = 'https://www.foodrepo.org/api/v3/products/_search'+"?api_key="+apiKey;
    // Include the search query in the API URL
@@ -73,7 +63,7 @@ export const load  = async() => {
         };
     })
 
-    food = mapToFoodData(apiData);
+    food = mapToFoodData;
     return {
     food
     }

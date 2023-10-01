@@ -14,7 +14,13 @@ declare global {
 			name: string 
 			barcode : string 
 			score :number 
-			nutrients : number 
+			nutrients : {
+				carbs : number
+				sodium: number
+				fiber: number
+				protein: number
+				calories: number
+			}
 			categoryID : number
 			userID : number 
 			image: string 

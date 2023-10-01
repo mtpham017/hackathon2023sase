@@ -14,7 +14,7 @@
 <Grid>
   {#each data.food as food, i}
     <Grid.Col span={4}>
-      <Fooddisplayer food = {foodData} />
+      <Fooddisplayer {food} />
     </Grid.Col>
   {/each}
 </Grid>
