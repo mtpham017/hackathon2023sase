@@ -1,4 +1,4 @@
-   
+import { env } from "$env/dynamic/private";   
 export async function load() {    
     const apiKey = env.OPENFOODREPO_API_KEY;
     let food: App.FoodData[] = [];

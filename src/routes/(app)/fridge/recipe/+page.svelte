@@ -11,6 +11,41 @@
     }    
 </script>
 
+<div id="page">
+    <div id="sideBar">
+        {#if data.food.length == 0}
+        <Text>
+            No food :(
+        </Text>
+      {:else}
+        {#each data.food as food}
+            <Fooddisplayer food={food}/>
+        {/each}
+      {/if}
+
+    </div>
+    <div id="content">
+      {#if data.recipes.length == 0}
+        <Grid>
+            <RecipeCard
+                recipe_name={undefined}
+                items={[]}
+            />
+        </Grid>
+      {:else}
+        <Grid>
+            {#each data.recipes as recipe}
+            <RecipeCard 
+                recipe_name={recipe.recipe_name}
+                items={[]}
+            />
+            {/each}
+        </Grid>
+      {/if}
+
+    </div>
+  </div>
+
 <style>
     #page {
         display: flex;

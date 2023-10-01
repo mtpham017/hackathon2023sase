@@ -10,7 +10,6 @@ export const load = (async ({parent} ) => {
 
    const food = getItemsByUserId(user_id) as App.FoodData[]
    const recipes = getRecipesByUserId(user_id) as Recipe[]
-
    return {
       food,
       user_id,

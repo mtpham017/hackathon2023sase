@@ -2,14 +2,7 @@
 	import { Modal, Group, Button } from '@svelteuidev/core';
 
 	let opened = false;
-<<<<<<< HEAD
-    export let closeModal; // Function to close the modal
-    export let itemInfo; // Information about the identified item
-
-
-=======
 	const closeModal = () =>{}
->>>>>>> b256c18 (scanner)
 </script>
 
  
