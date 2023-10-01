@@ -27,6 +27,11 @@ declare global {
 		interface PageData {
                     session: SessionData
                 }
+
+		interface GetRecipeData {
+			recipe_name: string
+
+		}
 		// interface Platform {}
 	}
 }
