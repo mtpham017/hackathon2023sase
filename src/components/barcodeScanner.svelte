@@ -1,7 +1,9 @@
 <script lang="ts">
     import { Html5Qrcode } from 'html5-qrcode'
     import { onMount } from 'svelte'
-
+    import BarcodeModalIngredientPopUp from './barcodeModalIngredientPopUp.svelte';
+    export let decodedResult 
+    
     let scanning = false
 
     let html5Qrcode
@@ -31,8 +33,13 @@
     }
 
     function onScanSuccess(decodedText, decodedResult) {
-        alert(`Code matched = ${decodedText}`)
-        console.log(decodedResult)
+        $modalVisible = true;
+        $modalMessage = `Code matched = ${decodedText}`;
+        
+        console.log(decodedResult);
+        return {
+          decodedResult
+        }
     }
 
     function onScanFailure(error) {
@@ -62,4 +69,6 @@
     {:else}
         <button on:click={start}>start</button>
     {/if}
+
+  
 </main>

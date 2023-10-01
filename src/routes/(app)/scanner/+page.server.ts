@@ -1,10 +1,11 @@
 import { env } from '$env/dynamic/private'
+ 
 export const load  = async() => {
     let searchQuery = ''
     const apiKey = env.OPENFOODREPO_API_KEY;
     let food: App.FoodData[] = [];
     try {
-    const apiUrl = 'https://www.foodrepo.org/api/v3/products/_search'+"?api_key="+apiKey;
+    const apiUrl = 'https://www.foodrepo.org/api/v3/products/?'+"barcode="+decodedResult+"&api_key="+apiKey;
    // Include the search query in the API URL
     // Create headers and include the API key
    const headers = new Headers({
