@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Grid } from '@svelteuidev/core';
-    import Fooddisplayer from '../../../components/fooddisplayer.svelte';
+    import PantryDisplayView from '../../../components/PantryDisplay.svelte';
     import type { PageData } from './$types';
     export let data : PageData
     export let form: ActionData
@@ -8,11 +8,11 @@
     
   </script>
      
-  {#if form?.food}
+  {#if data?.food}
     <Grid>
-      {#each form.food as food, i}
+      {#each data.food as food, i}
         <Grid.Col span={4}>
-          <Fooddisplayer  {food} />
+          <PantryDisplayView {food} />
         </Grid.Col>
       {/each}
     </Grid>

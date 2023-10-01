@@ -8,7 +8,7 @@
 <NativeSelect 
     type="select"
     data={food.map(
-      d => ({ label: d.name, d.item_id })
+      d => ({ label: d.name, value: d.item_id })
     )} 
     placeholder="Pick"
     name="{id}"
