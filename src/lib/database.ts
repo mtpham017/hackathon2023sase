@@ -122,8 +122,8 @@ function insertItem(items: InsertItemParams) {
       INSERT INTO ITEM (name, barcode, nutrient_ID, user_id, image)
       VALUES (?, ?, ?, ?, ?)
     `);
-    const { name, barcode, nutrient_ID, userId, image, quantity } = items;
-    return insertItemStmt.run(name, barcode, nutrient_ID, userId, image);
+    const { name, barcode, nutrient_ID, user_id, image, quantity } = items;
+    return insertItemStmt.run(name, barcode, nutrient_ID, user_id, image);
 }
 
 function insertNutrient(nutrientData: NutrientData) {
@@ -217,7 +217,11 @@ export function getRecipesByUserId (user_id: number) {
 }
 
 export function getItemsByUserId(user_id: number) {
-  const query = db.prepare("SELECT * FROM ITEM WHERE user_id = ?");
+  const query = db.prepare(`
+      SELECT i.*, n.*
+      FROM ITEM AS i
+      INNER JOIN NUTRIENT AS n ON i.nutrient_ID = n.nutrient_ID
+      WHERE i.user_id = ?`);
   return query.all(user_id);
 }
 

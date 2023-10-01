@@ -7,12 +7,9 @@
 
 <NativeSelect 
     type="select"
-    data={[   
-        { label: 'Svelte', value: '1' },
-        { label: 'Vue', value: '2' },
-        { label: 'Angular', value: '3' },
-        { label: 'React', value: '4' }
-    ]} 
+    data={food.map(
+      d => ({ label: d.name, d.item_id })
+    )} 
     placeholder="Pick"
     name="{id}"
     value={id}
