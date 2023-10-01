@@ -1,4 +1,3 @@
-const edamakey = "sadfafsdafds"
 import { env } from '$env/dynamic/private';
 
 

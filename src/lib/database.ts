@@ -33,6 +33,7 @@ const createItemTable = db.prepare(`
   )
 `);
 
+
 const createNutrientTable = db.prepare(`
   CREATE TABLE IF NOT EXISTS NUTRIENT (
     nutrient_ID INTEGER PRIMARY KEY,
@@ -44,8 +45,25 @@ const createNutrientTable = db.prepare(`
   )
   `);
 
+// Create the recipe table
+const createRecipeTable = db.prepare(`
+    CREATE TABLE IF NOT EXISTS recipe (
+      recipe_id INTEGER PRIMARY KEY AUTOINCREMENT,
+      recipe_name TEXT NOT NULL,
+      user_id INTEGER REFERENCES USER (user_id)
+    )
+`);
 
-
+// Create the junction table for recipes and items with quantities
+const createRecipeItemTable = db.prepare(`
+    CREATE TABLE IF NOT EXISTS recipe_item (
+      recipe_id INTEGER NOT NULL,
+      item_id INTEGER NOT NULL,
+      quantity INTEGER,
+      FOREIGN KEY (recipe_id) REFERENCES recipe (recipe_id),
+      FOREIGN KEY (item_id) REFERENCES item (item_id)
+    )
+`);
 export function signup(email: string, password: string) {
   const insertUser = db.prepare(`
     INSERT INTO USER (email, password) VALUES (?, ?)
@@ -121,27 +139,10 @@ export {
 
 //This is Nathan work
 
-// Create the recipe table
-const createRecipeTable = db.prepare(`
-    CREATE TABLE IF NOT EXISTS recipe (
-      recipe_id INTEGER PRIMARY KEY AUTOINCREMENT,
-      recipe_name TEXT NOT NULL
-    )
-`);
 
-// Create the junction table for recipes and items with quantities
-const createRecipeItemTable = db.prepare(`
-    CREATE TABLE IF NOT EXISTS recipe_item (
-      recipe_id INTEGER NOT NULL,
-      item_id INTEGER NOT NULL,
-      quantity INTEGER,
-      FOREIGN KEY (recipe_id) REFERENCES recipe (recipe_id),
-      FOREIGN KEY (item_id) REFERENCES item (item_id)
-    )
-`);
 
 // Exported function to insert a new recipe with items and quantities
-export function insertRecipe(recipeName:string, itemsWithQuantity) {
+export function insertRecipe(recipeName:string, itemsWithQuantity, user_id: number) {
   const insertRecipeStmt = db.prepare(`
     INSERT INTO recipe (recipe_name)
     VALUES (?)
@@ -164,10 +165,16 @@ export function insertRecipe(recipeName:string, itemsWithQuantity) {
   })();
 }
 
+export function getItemsByUserId(userId: number) {
+  const query = db.prepare('SELECT * FROM ITEM WHERE user_id = ?');
+  const items = query.all(userId);
+  return items;
+}
+
 // Exported function to get a recipe by ID, including items and quantities
 export function getRecipeById(recipeId:number) {
   const getRecipeStmt = db.prepare(`
-    SELECT recipe.recipe_id, recipe.recipe_name, item.item_name, recipe_item.quantity
+    SELECT recipe.recipe_id, recipe.recipe_name, recipe_item.quantity
     FROM recipe
     LEFT JOIN recipe_item ON recipe.recipe_id = recipe_item.recipe_id
     LEFT JOIN item ON recipe_item.item_id = item.item_id
@@ -189,6 +196,10 @@ export function getRecipeById(recipeId:number) {
   } else {
     return null; // Recipe not found
   }
+}
+
+export function getRecipesByUserId (user_id: number) {
+
 }
 
 

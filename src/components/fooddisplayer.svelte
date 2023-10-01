@@ -1,7 +1,9 @@
+
 <script lang='ts'>
 import { applyAction } from '$app/forms';
 import { Badge, Button, Card, Group, Image, Text } from '@svelteuidev/core';
 export let food : App.FoodData
+
 </script>
 
 

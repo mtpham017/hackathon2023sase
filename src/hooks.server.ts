@@ -1,7 +1,17 @@
 import { env } from '$env/dynamic/private'
+import { redirect } from '@sveltejs/kit';
+import { sequence } from '@sveltejs/kit/hooks';
 import { handleSession } from 'svelte-kit-cookie-session';
 
-export const handle = handleSession({ 
+const cookiesHandler = handleSession({ 
     secret: env.KEY!
 })
 
+export const handle = sequence(cookiesHandler, ({ resolve, event }) => {
+    const { user_id } = event.locals.session.data
+    
+    if(!user_id && event.route.id?.startsWith("/(app)")) {
+        throw redirect(302, "/login");
+    }  
+    return resolve(event);
+})

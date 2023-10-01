@@ -1,7 +1,5 @@
 <!-- loginview.svelte -->
 <script lang="ts">
-  import { enhance } from '$app/forms';
-  import { goto } from '$app/navigation';
   import type { ActionData } from './$types';
   import { PasswordInput, TextInput } from '@svelteuidev/core';
   import { Button } from '@svelteuidev/core';
@@ -70,12 +68,12 @@
 <div class="container">
   <div class="login-box">
     <h2 class="mt-4 text-2xl font-bold leading-9 tracking-tight">Sign in to your account</h2>
-    <form on:submit="{handleSubmit}">
+    <form method="POST">
       <div class="form-element">
-        <TextInput placeholder="User Name" label="" />
+        <TextInput placeholder="User Name"  name="email" label="" />
       </div>
       <div class="form-element">
-        <PasswordInput placeholder="Password" bind:value />
+        <PasswordInput placeholder="Password" name="password" bind:value />
       </div>
       <div class="form-element">
         <!-- Add a button to trigger form submission -->
