@@ -7,6 +7,7 @@
   export let data : PageData
   export let form: ActionData
   import type { ActionData } from './$types';
+  import { insertItem } from '$lib/database';
   
   $: {
     console.log(data.session.user_id)
@@ -28,7 +29,7 @@
     {/each}
   </Grid>
   {:else}
-    <p1>Start searhing for food!</p1>
+    <p1>Start searching for food!</p1>
 {/if}
 
 
