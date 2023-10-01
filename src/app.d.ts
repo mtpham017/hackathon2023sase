@@ -11,14 +11,16 @@ type SessionData = {
 declare global {
 	namespace App {
 		interface FoodData {
+			item_id: number,
 			name: string 
 			barcode : string 
 			score :number 
+			//defaults to 0 if not present
+			quantity: number 
 			nutrients : number 
 			categoryID : number
 			userID : number 
 			image: string 
-		
 		}
 		// interface Error {}
 		interface Locals {
