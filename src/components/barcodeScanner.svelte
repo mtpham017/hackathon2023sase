@@ -32,7 +32,9 @@
         scanning = false
     }
 
-    function onScanSuccess(decodedText, decodedResult) {
+    async function onScanSuccess (decodedText, decodedResult) {
+        await { 
+        }
         $modalVisible = true;
         $modalMessage = `Code matched = ${decodedText}`;
         

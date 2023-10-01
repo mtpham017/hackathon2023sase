@@ -1,7 +1,6 @@
 import { env } from '$env/dynamic/private'
- 
-export const load  = async() => {
-    let searchQuery = ''
+  
+export async function load() {    
     const apiKey = env.OPENFOODREPO_API_KEY;
     let food: App.FoodData[] = [];
     try {
@@ -69,11 +68,4 @@ export const load  = async() => {
     food: []
   };
 }
-}
-
-export const actions  = {
-    default: async ({ request, locals })  => {
-        const formData = await request.formData();
-        const searchQuery = formData.get(" ")
-     }
-}
+    }
