@@ -1,30 +1,28 @@
-<script>
+<script lang="ts">
 	import { Badge, Button, Card, Group, Image, Text } from '@svelteuidev/core';
 	import {onMount} from 'svelte';
  
-
-	/**
+    /**
      * @type {{ image_url: any; product_name: any; description: any; protein: any; carbohydrates: any; fat: any; }}
      */
 	let foodData;
  
 	// Function to fetch food data from the Open Food Repo API
-	async function fetchFoodData() {
-		try {
-			const response = await fetch('https://api.openfoodrepo.org/v1/products');  
-			if (response.ok) {
-				foodData = await response.json();
-			} else {
-				console.error('Failed to fetch food data');
-			}
-		} catch (error) {
-			console.error('An error occurred while fetching food data:', error);
-		}
-	}
-
-	// Call the fetchFoodData function when the component is mounted
+//	async function fetchFoodData() {
+//		try {
+//			const response = await fetch('https://api.openfoodrepo.org/v1/products');  
+//			if (response.ok) {
+//				foodData = await response.json();
+//			} else {
+//				console.error('Failed to fetch food data');
+//			}
+//		} catch (error) {
+//			console.error('An error occurred while fetching food data:', error);
+//		}
+//	}
+// Call the fetchFoodData function when the component is mounted
 	onMount(() => {
-		fetchFoodData();
+		//fetchFoodData();
 	});
 </script>
 
