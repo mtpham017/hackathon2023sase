@@ -19,8 +19,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    
   }
 
   .header {
@@ -28,8 +26,6 @@
     background-color: #fff;
     font-family: 'Gabarito';
     font-weight: 500;
-    background-image: url('src/lib/images/Fluid-10s-1920px.png');
-    
   }
 
   .header h1 {
@@ -86,14 +82,12 @@
     text-align: center;
   }
 
+  
 </style>
 
 
 
-
-
 <div class="container">
-  
   <section class="header">
     <h1>Welcome to Sha'Mo</h1>
     <p>Your Virtual Kitchen Assistant for identifying ingredients, sharing nutritional facts, recommending recipes, and more.</p>
@@ -105,18 +99,23 @@
       Sha'Mo is your all-in-one digital kitchen assistant. It helps you identify ingredients, shares nutritional facts, recommends delicious recipes based on what's in your pantry, and assists you in planning healthy and tasty meals.
     </p>
   </section>
-
+  
+  <div class="curve"></div>
   <section class="start">
     <h2>Get Started</h2>
     <p>
       Start your culinary journey with Virtual Kitchen Helper. Discover new recipes, plan your meals, and make cooking easier and more enjoyable.
     </p>
-    <button class="start-button">Get Started</button>
+    <a href = "/signup">
+      <button class="start-button">Get Started</button>
+    </a>
   </section>
 
   <footer>
     <p>&copy; 2023 Virtual Kitchen Helper. All rights reserved.</p>
   </footer>
 </div>
+
+
 
 
