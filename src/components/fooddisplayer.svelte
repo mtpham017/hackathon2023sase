@@ -9,15 +9,15 @@ export let food : App.FoodData
 
 <Card shadow="sm" padding="lg">
   <Card.Section first padding="lg">
-    <Image src={Food} height={160} alt={name} />
+    <Image src={food.image} height={160} alt={food.name} />
   </Card.Section>
 
   <Group position="apart">
-    <Text weight={500}>{name}</Text>
+    <Text weight={500}>{food.name}</Text>
   </Group>
 
   <Text size="sm">
-    {description}
+    {food.score}
   </Text>
 
   <Text size="sm">
@@ -25,23 +25,23 @@ export let food : App.FoodData
   </Text>
 
   <Text size="sm">
-    Protein: {nutrient.protein}
+    Protein: {food.nutrients.protein}
   </Text>
   <Text size="sm">
-    Carbohydrates: {nutrient.carbs}
+    Carbohydrates: {food.nutrients.carbs}
   </Text>
   <Text size="sm">
-    Sodium: {nutrient.sodium}
+    Sodium: {food.nutrients.sodium}
   </Text>
   <Text size="sm">
-    Fiber: {nutrient.fiber}
+    Fiber: {food.nutrients.fiber}
   </Text>
   <Text size="sm">
-    Calories: {nutrient.calories}
+    Calories: {food.nutrients.calories}
   </Text>
 
-  <Button variant="light" color="blue" fullSize>
-    Book classic tour now
+  <Button on:click variant="outline" color="#2c6e49" fullSize>
+    Add
   </Button>
 </Card>
 

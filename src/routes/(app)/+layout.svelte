@@ -1,6 +1,7 @@
 <script lang="ts">
     import { SvelteUIProvider } from '@svelteuidev/core';
     import NavBarView from '../../components/NavBarView.svelte';
+    import BarcodeModalIngredientPopUp from '../../components/barcodeModalIngredientPopUp.svelte';
 
 </script>
 
@@ -9,5 +10,5 @@
 </header>
 
 <SvelteUIProvider withNormalizeCSS withGlobalStyles>
-	<slot />
+	<BarcodeModalIngredientPopUp />
 </SvelteUIProvider>

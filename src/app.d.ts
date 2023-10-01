@@ -17,7 +17,13 @@ declare global {
 			score :number 
 			//defaults to 0 if not present
 			quantity: number 
-			nutrients : number 
+			nutrients : {
+				carbs : number
+				sodium: number
+				fiber: number
+				protein: number
+				calories: number
+			}
 			categoryID : number
 			userID : number 
 			image: string 
