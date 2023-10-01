@@ -32,26 +32,12 @@
         await html5Qrcode.stop()
         scanning = false
     }
-<<<<<<< HEAD
-
-    async function onScanSuccess (decodedText, decodedResult) {
-        await { 
-        }
-        $modalVisible = true;
-        $modalMessage = `Code matched = ${decodedText}`;
-        
-        console.log(decodedResult);
-        return {
-          decodedResult
-        }
-=======
     //@ts-ignore
     function onScanSuccess(decodedText, result) {
         modalVisible = true;
         modalMessage = `Code matched = ${decodedText}`;
         //@ts-ignore
         onSuccess("071828009018")
->>>>>>> b256c18 (scanner)
     }
 
     function onScanFailure(error) {
