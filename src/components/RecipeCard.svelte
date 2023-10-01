@@ -1,30 +1,39 @@
 <script lang="ts">
-	import { Badge, Button, Card, Group, Image, Text } from '@svelteuidev/core';
-    export let recipe_name: string
+	import { Badge, Button, Card, Grid, Group, Image, Text } from '@svelteuidev/core';
+    import img from '$lib/images/galaxy.jpg'
+    export let recipe_name: string;
+    export let items: App.FoodData[]
 </script>
 
-<Card shadow='sm' padding='lg'>
-	<Card.Section first padding='lg'>
-		<Image
-			src='https://images.unsplash.com/photo-1627552245715-77d79bbf6fe2?auto=format&fit=crop&w=640&q=80'
-			height={160}
-			alt='Portugal'
-		/>
-	</Card.Section>
+{#if recipe_name}
+    <Grid.Col md={4} lg={2}>
+        <Card shadow='sm' padding='lg'>
+            <Card.Section first padding='lg'>
+                <Image
+                    src={img}
+                    height={160}
+                    alt=''
+                />
+            </Card.Section>
+            <Group position='apart'>
+                <Text weight={'bold'}>{recipe_name}</Text>
+                <Button variant="default" color="#ffc9b9">Remove</Button>
+                <Button color="#4c956c">+</Button>
+            </Group>
+            <Card.Section last padding ="lg">
+                {#each items as item}
+                    <Text>{item.name}</Text>
+                {/each}
+            </Card.Section>
+        </Card>
+    </Grid.Col> 
+{:else}
+    <Grid.Col md={4} lg={2}>
+        <Card shadow='sm' padding='lg'>
+            <Group position="apart">
+                <Button color="#4c956c" fullSize variant="outline">+</Button>
+            </Group>
+        </Card>
+    </Grid.Col>
+{/if}
 
-	<Group position='apart'>
-		<Text weight={500}>${recipe_name}</Text>
-		<Badge color='pink' variant='light'>
-			On Sale
-		</Badge>
-	</Group>
-
-	<Text size='sm'>
-		With Portugal Porto Adventures you can explore more of the beautiful portuguese cities,
-		by walking on food, meeting the locals and eat excellent food and wine
-	</Text>
-
-	<Button variant='light' color='blue' fullSize>
-		Book classic tour now
-	</Button>
-</Card>

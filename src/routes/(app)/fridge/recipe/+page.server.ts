@@ -3,6 +3,7 @@ import type { PageServerLoad } from './$types'
 
 interface Recipe { 
    recipe_name: string
+   
 }
 export const load = (async ({parent} ) => {
    const { user_id, email } = (await parent()).session
