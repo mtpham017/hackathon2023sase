@@ -199,7 +199,14 @@ export function getRecipeById(recipeId:number) {
 }
 
 export function getRecipesByUserId (user_id: number) {
-
+  const query = db.prepare(`
+    SELECT ri.*, r.recipe_name
+    FROM recipe_item AS ri
+    JOIN recipe AS r ON ri.recipe_id = r.recipe_id
+    WHERE r.user_id = ?`.trim());
+  const recipes = query.all(user_id);
+  
+  return recipes;
 }
 
 
@@ -209,6 +216,7 @@ const connect = () => {
 
     // Create the CATEGORIES table
     createCategoriesTable.run();
+    createNutrientTable.run();
     createUserTable.run();
     createRecipeTable.run();
     createRecipeItemTable.run();
