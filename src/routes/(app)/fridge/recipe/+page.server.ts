@@ -17,3 +17,11 @@ export const load = (async ({parent} ) => {
       recipes
    }
 }) satisfies PageServerLoad
+
+
+export const actions = {
+
+   default : () => {
+      console.log('hello')
+   }
+}
