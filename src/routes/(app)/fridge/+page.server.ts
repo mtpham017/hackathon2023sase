@@ -14,7 +14,7 @@ export const load  = (async ({ locals }) => {
 
 
 export const actions = {
-  default : async ({ request }) => {
+  search : async ({ request }) => {
     const formData = await request.formData();
     let searchQuery = formData.get("query")
     const apiKey = env.OPENFOODREPO_API_KEY;
@@ -92,6 +92,32 @@ export const actions = {
         food: []
       };
     }
+  },
+  add : async ({ fetch, request }) => {
+    const data = (await request.formData())
+    const nutrients = {
+      sodium: data.get('nutrients-sodium'),
+      carbs: data.get('nutrients-carbs'),
+      fiber: data.get('nutrients-fiber'),
+      calories: data.get('nutrients-calories')
+    }
+    const item = {
+      name: data.get('name'),
+      barcode: data.get('barcode'),
+      image: data.get('image'),
+      user_id: data.get('userId')
+    }
+    const response = await fetch("/api/item", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        nutrients,
+        item
+      })
+    })
+    console.log(response)
   }
 
 } satisfies Actions

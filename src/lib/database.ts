@@ -4,13 +4,6 @@ import Database from 'better-sqlite3';
 // Create or open a SQLite database file
 const db = new Database('mydatabase.db', { verbose: console.log });
 export let isConnected = false;
-// Define the schema for the CATEGORIES table
-const createCategoriesTable = db.prepare(`
-  CREATE TABLE IF NOT EXISTS CATEGORIES (
-    category_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    category_name TEXT NOT NULL
-  )
-`);
 
 const createUserTable = db.prepare(`
   CREATE TABLE IF NOT EXISTS USER (
@@ -27,7 +20,6 @@ const createItemTable = db.prepare(`
     name TEXT NOT NULL,
     barcode INT,
     nutrient_ID INT REFERENCES NUTRIENT(nutrient_ID),
-    category_id INTEGER REFERENCES CATEGORIES(category_id),
     user_id INTEGER REFERENCES USER(user_id),
     image TEXT
   )
@@ -36,7 +28,7 @@ const createItemTable = db.prepare(`
 
 const createNutrientTable = db.prepare(`
   CREATE TABLE IF NOT EXISTS NUTRIENT (
-    nutrient_ID INTEGER PRIMARY KEY,
+    nutrient_ID INTEGER PRIMARY KEY AUTOINCREMENT,
     fat TEXT,
     sodium TEXT,
     carbs TEXT,
@@ -116,16 +108,56 @@ interface InsertItemParams {
     quantity: number
 
 }
+
+interface NutrientData {
+  fat: string;
+  sodium: string;
+  carbs: string;
+  fiber: string;
+  calories: string;
+}
+
 function insertItem(items: InsertItemParams) {
     const insertItemStmt = db.prepare(`
-      INSERT INTO ITEM (name, barcode, nutrient_ID, category_id, user_id, image, quantity)
+      INSERT INTO ITEM (name, barcode, nutrient_ID, user_id, image)
       VALUES (?, ?, ?, ?, ?, ?, ?)
-      RETURNING *
     `);
-    const { name, barcode, nutrient_ID, categoryId, userId, image, quantity } = items;
-    return insertItemStmt.get(name, barcode, nutrient_ID, categoryId, userId, image, quantity);
+    const { name, barcode, nutrient_ID, userId, image, quantity } = items;
+    return insertItemStmt.run(name, barcode, nutrient_ID, userId, image);
 }
-  
+
+function insertNutrient(nutrientData: NutrientData) {
+  const insertQuery = db.prepare(
+    `
+    INSERT INTO NUTRIENT (fat, sodium, carbs, fiber, calories)
+    VALUES (?, ?, ?, ?, ?)
+  `
+  );
+
+  const result = insertQuery.run(
+    nutrientData.fat,
+    nutrientData.sodium,
+    nutrientData.carbs,
+    nutrientData.fiber,
+    nutrientData.calories
+  );
+
+  if (result.changes === 1) {
+    // Successfully inserted, fetch the inserted row
+    const nutrientId = result.lastInsertRowid;
+    const insertedNutrient = db.prepare(
+      `
+      SELECT * FROM NUTRIENT WHERE nutrient_ID = ?
+    `
+    ).get(nutrientId);
+
+    return insertedNutrient;
+  } else {
+    // Insertion failed
+    return null;
+  }
+}
+
 function updateQuantityOnItem(item_id:number, diff: number) {
   const updateQuantity = db.prepare(`
     UPDATE ITEM
@@ -133,7 +165,6 @@ function updateQuantityOnItem(item_id:number, diff: number) {
     WHERE item_id = ?
   `);
   updateQuantity.run(diff, item_id)
-  
 }
 //close database 
 export const close = () => {
@@ -145,7 +176,8 @@ export {
     insertCategory,
     insertUser,
     insertItem,
-    updateQuantityOnItem
+    updateQuantityOnItem,
+    insertNutrient
 };
 
 //This is Nathan work
@@ -194,7 +226,7 @@ const connect = () => {
     db.pragma('journal_mode = WAL');
 
     // Create the CATEGORIES table
-    createCategoriesTable.run();
+    //createCategoriesTable.run();
     createNutrientTable.run();
     createUserTable.run();
     createRecipeTable.run();

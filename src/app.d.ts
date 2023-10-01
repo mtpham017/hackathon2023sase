@@ -22,7 +22,7 @@ declare global {
 				protein: number
 				calories: number
 			}
-			categoryID : number
+			categoryID : null
 			userID : number 
 			image: string 
 		}

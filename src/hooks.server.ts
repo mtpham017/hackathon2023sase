@@ -10,7 +10,7 @@ const cookiesHandler = handleSession({
 export const handle = sequence(cookiesHandler, ({ resolve, event }) => {
     const { user_id } = event.locals.session.data
     
-    if(!user_id && event.route.id?.startsWith("/(app)") || event.route.id?.startsWith("/api")) {
+    if(!user_id && event.route.id?.startsWith("/(app)")) {
         throw redirect(302, "/login");
     }  
     return resolve(event);

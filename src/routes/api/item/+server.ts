@@ -1,14 +1,10 @@
 import { json, type RequestHandler } from "@sveltejs/kit";
-import { getItemsByUserId, insertItem } from '$lib/database'
+import { insertItem, insertNutrient } from '$lib/database'
 
-export const POST = ( async ({ request }) => {
-    const body = await request.json();
-    return json(insertItem(body)) 
-
+export const POST = (async ({ request }) => {
+    const { nutrients, item } = await request.json();
+    const nutrientInsertion = insertNutrient(nutrients)
+    //@ts-ignore
+    insertItem({ ...item, nutrient_ID: nutrientInsertion.nutrient_ID })
+    return json(item, {status: 200 }) 
 }) satisfies RequestHandler
-
-export const GET: RequestHandler = async ({ request}) => {
-    const userId =  await request.json(); // Extract user_id from the request parameters
-    const items = getItemsByUserId(userId);
-    return json(items);
-};

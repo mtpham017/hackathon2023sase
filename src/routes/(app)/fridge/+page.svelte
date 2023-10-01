@@ -2,40 +2,56 @@
   import { Grid } from '@svelteuidev/core';
   import Fooddisplayer from '../../../components/fooddisplayer.svelte';
   import AddFoodButton from '../../../components/AddFoodButton.svelte';
+  import { applyAction, deserialize, enhance } from '$app/forms'
+	import { invalidateAll, goto } from '$app/navigation';
   import type { PageData } from './$types';
   export let data : PageData
   export let form: ActionData
   import type { ActionData } from './$types';
   
-  $: {
-     console.log(form?.food)
-     console.log(data)
-  }
  
-  const apiUrl = "/api/item";
-  async function addToFridge() {
-    try {
-      // Send the POST request with the data
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data), // Send the PageData object
-      });
-  
-      if (response.ok) {
-        // Request was successful, handle the response
-        // You can show a success message or update the UI here
-        alert("Item added to fridge!");
+  async function addToFridge(food, e) {
+    const data = new FormData() 
+    console.log(food)
+    for ( var key in food ) {
+      if(typeof food[key] === 'object') {
+          const nested = food[key]
+          for(const nestKey in nested) {
+            console.log(nestKey)
+            data.append(key+"-"+nestKey, nested[nestKey])
+          }
       } else {
-        // Handle errors if the request was not successful
-        console.error("Error adding item to fridge.");
+          data.append(key, food[key]);
       }
-    } catch (error) {
-      // Handle any exceptions or network errors
-      console.error("An error occurred:", error);
     }
+    try {
+
+      const nutrients = {
+        sodium: data.get('nutrients-sodium'),
+        carbs: data.get('nutrients-carbs'),
+        fiber: data.get('nutrients-fiber'),
+        calories: data.get('nutrients-calories')
+    }
+        const item = {
+          name: data.get('name'),
+          barcode: data.get('barcode'),
+          image: data.get('image'),
+          user_id: data.get('userId')
+        }
+        const response = await fetch("/api/item", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            nutrients,
+            item
+          })
+        })
+    }
+    catch(E) {
+      
+    } 
   }
 </script>
  
@@ -45,7 +61,9 @@
   <Grid>
     {#each form.food as food, i}
       <Grid.Col span={4}>
-        <Fooddisplayer on:click={() => addToFridge(food)} {food} />
+        <form method="POST" action="?/add" on:submit|preventDefault={(e) => addToFridge(food, e)}>
+          <Fooddisplayer {food} />
+        </form>
       </Grid.Col>
     {/each}
   </Grid>
