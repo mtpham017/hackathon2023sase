@@ -1,6 +1,6 @@
 // Import the necessary modules using ESM syntax
 import Database from 'better-sqlite3';
-
+import { env } from '$env/dynamic/private'
 // Create or open a SQLite database file
 const db = new Database('mydatabase.db', { verbose: console.log });
 export let isConnected = false;
@@ -240,5 +240,6 @@ const connect = () => {
     isConnected = true;
 
 }
-
-connect();
+if(!env.DB_NAME) {
+  connect();
+}
