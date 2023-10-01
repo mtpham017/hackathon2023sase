@@ -2,8 +2,9 @@
     import { Html5Qrcode } from 'html5-qrcode'
     import { onMount } from 'svelte'
     import BarcodeModalIngredientPopUp from './barcodeModalIngredientPopUp.svelte';
-    export let decodedResult 
-    
+    export let onSuccess
+    export let modalMessage
+    export let modalVisible
     let scanning = false
 
     let html5Qrcode
@@ -31,6 +32,7 @@
         await html5Qrcode.stop()
         scanning = false
     }
+<<<<<<< HEAD
 
     async function onScanSuccess (decodedText, decodedResult) {
         await { 
@@ -42,6 +44,14 @@
         return {
           decodedResult
         }
+=======
+    //@ts-ignore
+    function onScanSuccess(decodedText, result) {
+        modalVisible = true;
+        modalMessage = `Code matched = ${decodedText}`;
+        //@ts-ignore
+        onSuccess("071828009018")
+>>>>>>> b256c18 (scanner)
     }
 
     function onScanFailure(error) {
@@ -69,7 +79,7 @@
     {#if scanning}
         <button on:click={stop}>stop</button>
     {:else}
-        <button on:click={start}>start</button>
+        <button on:click={onScanSuccess}>start</button>
     {/if}
 
   

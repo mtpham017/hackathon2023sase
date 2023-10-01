@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { Button } from '@svelteuidev/core';
     import { TextInput } from '@svelteuidev/core';
 
     export let form;

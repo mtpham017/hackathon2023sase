@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script>
 	import { Html5Qrcode } from 'html5-qrcode';
 	import { onMount } from 'svelte';
@@ -36,6 +37,34 @@
 	  alert(`Code matched = ${decodedText}`);
 	  decodedResult = decodedText;
 	  const apiKey = env.OPENFOODREPO_API_KEY;
+=======
+<script lang="ts">
+    import BarcodeScanner from "../../../components/barcodeScanner.svelte";
+    import type { ActionData } from "./$types";
+    let decodeResult: string;
+    let modalMessage:string
+    let modalVisible: boolean
+    const onScanSuccess = (result: string) => {
+        modalMessage = "Code matched = " + result
+        decodeResult = result
+        modalVisible = true
+    }
+</script>
+
+{#if decodeResult}
+    <div>
+        <p>poo</p>
+    </div>
+{:else}
+
+    <div id="the-div"> 
+        <BarcodeScanner onSuccess={onScanSuccess} modalMessage={modalMessage}, {modalVisible}/>
+    </div>
+
+{/if}
+
+
+>>>>>>> b256c18 (scanner)
 
 	  // Create the API URL with the decoded result
 	  const apiUrl = 'https://www.foodrepo.org/api/v3/products/?'+"barcode="+decodedResult+"&api_key="+apiKey;  

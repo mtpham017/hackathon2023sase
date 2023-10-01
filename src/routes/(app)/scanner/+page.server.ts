@@ -4,7 +4,7 @@ export async function load() {
     const apiKey = env.OPENFOODREPO_API_KEY;
     let food: App.FoodData[] = [];
     try {
-    const apiUrl = 'https://www.foodrepo.org/api/v3/products/?'+"barcode="+decodedResult+"&api_key="+apiKey;
+    const apiUrl = 'https://www.foodrepo.org/api/v3/products/?'+"barcode="+"071828009018"+"&api_key="+apiKey;
    // Include the search query in the API URL
     // Create headers and include the API key
    const headers = new Headers({
@@ -68,4 +68,15 @@ export async function load() {
     food: []
   };
 }
+<<<<<<< HEAD
     }
+=======
+}
+
+export const actions  = {
+    default: async ({ request, locals })  => {
+        const formData = await request.formData();
+        const searchQuery = formData.get("")
+     }
+}
+>>>>>>> b256c18 (scanner)
