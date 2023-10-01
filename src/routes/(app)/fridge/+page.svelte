@@ -12,8 +12,29 @@
     console.log(data.session.user_id)
     console.log(form?.food)
   }
-  const addToFridge = (food: any) => {
-      console.log(food)
+  const apiUrl = "/api/item";  
+  async function addToFridge() {
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        // Request was successful, handle the response
+        // You can show a success message or update the UI here
+        console.log("Item added to fridge!");
+      } else {
+        // Handle errors if the request was not successful
+        console.error("Error adding item to fridge.");
+      }
+    } catch (error) {
+      // Handle any exceptions or network errors
+      console.error("An error occurred:", error);
+    }
   }
 </script>
  

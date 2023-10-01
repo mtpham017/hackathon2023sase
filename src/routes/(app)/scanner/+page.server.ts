@@ -12,18 +12,6 @@ export async function load() {
      'Accept': 'application/json'
    });
 
-   const requestBody ={
-    _source: {
-        includes: ["barcode", "name", "images","nutrients", "name_translations.en"]           
-    },
-    size:20,
-    query: {
-        query_string: {
-            query: searchQuery
-        }
-      }
-   }
-
    const response = await fetch(apiUrl, {
      method: 'POST',
      headers: headers,
