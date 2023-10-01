@@ -9,13 +9,20 @@ export const actions  = {
        const email = formData.get("email"),
              password  = formData.get("password");
              
-     
+       if(!email || !password) {
+            return {
+                email,
+                message: "Need to fill out the form: missing fields"
+            };
+       };
+       const { email: sessionEmail, user_id } = locals.session.data
+       if(sessionEmail && user_id) {
+            throw redirect(302, "/fridge");
+       };
        const authentication = signup(email as string, password as string);
        if(authentication.success) {
            const { email } = locals.session.data;
-            console.log(email)
            if(!email) {
-               await locals.session.set({ email });
                throw redirect(302, "/login");
            } else {
                 throw redirect(302, "/fridge");
