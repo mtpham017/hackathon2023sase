@@ -5,6 +5,11 @@
     import RecipeFoodSelect from '../../../../components/RecipeFoodSelect.svelte';
     export let data : PageData
     $:food = data.food
+    $:recipefood = data.recipes
+
+    $:{ 
+        console.log(recipefood)
+    }
     let showRecipeBuilder = false
     let totalRecipeListSize = 0
     let newRecipe = (e) => {
@@ -70,7 +75,7 @@
             {#each data.recipes as recipe}
             <RecipeCard 
                 recipe_name={recipe.recipe_name}
-                items={food}
+                items={recipe.ingredients}
             />
             {/each}
         </Grid>

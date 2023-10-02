@@ -8,17 +8,16 @@ export let food : App.FoodData
 
 
 <Card shadow="sm" padding="lg">
-  <Card.Section first padding="lg">
-    <Image src={food.image} height={160} alt={food.name} />
-  </Card.Section>
+  <!--
+     <Card.Section first padding="lg">
+        <Image src={food.image} height={160} alt={food.name} />
+    </Card.Section>
 
+  -->
+ 
   <Group position="apart">
     <Text weight={500} style = "font-size: 24px; font-family:'Gabarito', sans-serif;text-align:center; width:100%; padding-top:1rem; padding-bottom:1rem">{food.name}</Text>
   </Group>
-
-  <Text size="sm">
-    {food.score}
-  </Text>
 
   <Text size="sm">
     Nutritional Information:

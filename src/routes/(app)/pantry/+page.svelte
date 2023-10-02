@@ -2,10 +2,13 @@
     import { Grid } from '@svelteuidev/core';
     import PantryDisplayView from '../../../components/PantryDisplay.svelte';
     import type { PageData } from './$types';
+    import type { ActionData } from './$types';
+
     export let data : PageData
     export let form: ActionData
-    import type { ActionData } from './$types';
-    
+    $: {
+        console.log(data)     
+    }
   </script>
      
   {#if data?.food}

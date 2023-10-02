@@ -164,6 +164,7 @@ function updateQuantityOnItem(item_id:number, diff: number) {
     SET quantity = salary * ?
     WHERE item_id = ?
   `);
+
   updateQuantity.run(diff, item_id)
 }
 //close database 
@@ -193,12 +194,12 @@ export function insertRecipe(recipeName:string, item_ids: number[], user_id: num
   `);
 
   const data = insertRecipeStmt.get(recipeName, user_id)
+  console.log("data", data)
   for(const id of item_ids) {
     const insertRecipeItemStmt = db.prepare(`
       INSERT INTO recipe_item (recipe_id, item_id)
       VALUES (?, ?)
     `);
-    console.log(id)
     insertRecipeItemStmt.run(data.recipe_id, id)
   }
 
@@ -206,15 +207,27 @@ export function insertRecipe(recipeName:string, item_ids: number[], user_id: num
 }
 
 export function getRecipesByUserId (user_id: number) {
-  const query = db.prepare(`
-    SELECT ri.*, r.recipe_name
-    FROM recipe_item AS ri
-    JOIN recipe AS r ON ri.recipe_id = r.recipe_id
-    WHERE r.user_id = ?`.trim());
-  const recipes = query.all(user_id);
-  
-  return recipes;
+
+    const query = db.prepare(`
+        SELECT *
+        FROM recipe as r
+        WHERE r.user_id = ?
+    `);
+    const recipes = query.all(user_id);
+    for(const recipe of recipes) {
+        const query2 = db.prepare(`
+            SELECT i.*
+            FROM recipe_item AS ri
+            INNER JOIN item AS i ON ri.item_id = i.item_id
+            WHERE ri.recipe_id = ?
+        `);
+        const items = query2.all(recipe.recipe_id);
+        recipe.ingredients = items;
+    }
+    console.log(recipes)
+    return recipes;
 }
+
 
 export function getItemsByUserId(user_id: number) {
   const query = db.prepare(`
@@ -240,6 +253,4 @@ const connect = () => {
     isConnected = true;
 
 }
-if(!env.DB_NAME) {
   connect();
-}

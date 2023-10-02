@@ -14,7 +14,7 @@ export const load  = (async ({ locals }) => {
 
 
 export const actions = {
-  search : async ({ request }) => {
+  search : async ({ request, locals }) => {
     const formData = await request.formData();
     let searchQuery = formData.get("query")
     const apiKey = env.OPENFOODREPO_API_KEY;
@@ -72,7 +72,8 @@ export const actions = {
               calories: energy_calories_kcal?.per_hundred ? energy_calories_kcal?.per_hundred + energy_calories_kcal.unit : "?"
             },
             categoryId: null,
-            userId: 1,
+            //BRUHHHHHHHHHHH
+            userId: locals.session.data.user_id,
             image: element._source.images?.[0]?.thumb,
           };
         })

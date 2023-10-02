@@ -6,7 +6,7 @@ import type { Actions } from '@sveltejs/kit';
  
 export const load  = (async ({ locals }) => {
   const session = locals.session.data
-  const food = getItemsByUserId(session.user_id)
+  const food = getItemsByUserId(session.user_id.toString())
   console.log(food)
   return {
     food
