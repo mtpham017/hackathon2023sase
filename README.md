@@ -1,6 +1,6 @@
-# Virtual Kitchen Helper (SHAHUL)
+# Virtual Kitchen Helper (SHA'MO)
 
-Welcome to Virtual Kitchen Helper SHAHUL, your digital kitchen assistant for identifying ingredients, sharing nutritional facts, recommending recipes, and assisting you in planning meals wisely.
+Welcome to Virtual Kitchen Helper SHA'MO, your digital kitchen assistant for identifying ingredients, sharing nutritional facts, recommending recipes, and assisting you in planning meals wisely.
 
 ## Table of Contents
 - [Getting Started](#getting-started)
